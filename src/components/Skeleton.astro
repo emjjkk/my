@@ -1,0 +1,7 @@
+---
+const { count = 1 } = Astro.props;
+---
+
+{Array.from({ length: count }).map(() => (
+	<div class="animate-pulse bg-neutral-800 h-20 mb-4 rounded"></div>
+))}

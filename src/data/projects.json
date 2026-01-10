@@ -1,0 +1,57 @@
+[
+  {
+    "title": "Markd",
+    "year": 2025,
+    "description": "Markdown editor built with NextJS and React-Markdown, with the ability to publish pages with sharable links.",
+    "images": ["https://i.ibb.co/WNXDCh6q/m1.png", "https://i.ibb.co/7tkV3zyX/m2.png", "https://i.ibb.co/NdFzNPjs/m3.png", "https://i.ibb.co/n88VHcwX/m4.png", "https://i.ibb.co/CpPrhGWj/m5.png"],
+    "logo": "https://cdn.discordapp.com/app-icons/1417683739580039208/a32900f495e4d35e0ba091f3a73f7720.png",
+    "repo": "https://github.com/emjjkk/markd",
+    "demo": "https://markd.emjjkk.tech",
+    "stack": ["Next.js", "NeonDB", "Drizzle"],
+    "category": "Web Application"
+  },
+  {
+    "title": "Dictionary",
+    "year": 2024,
+    "description": "Minimal but functional dictionary built with NextJS Pages Router and a third-party API",
+    "images": ["https://i.ibb.co/hRVFbzHH/d2.png", "https://i.ibb.co/TMXm0Jbh/d1.png"],
+    "logo": "https://cdn.discordapp.com/app-icons/1417683739580039208/a32900f495e4d35e0ba091f3a73f7720.png",
+    "repo": "https://github.com/emjjkk/dictionary",
+    "demo": "https://dictionary.emjjkk.tech",
+    "stack": ["Next.js", "TailwindCSS", "Axios"],
+    "category": "Web Application"
+  },
+  {
+    "title": "Dreamweaver",
+    "year": 2025,
+    "description": "AI Image generation discord bot running 100% on edge, built using NextJS, Vercel, Supabase, and Huggingface Inference API",
+    "images": ["https://i.ibb.co/XZPJMMdP/Capture.png", "https://i.ibb.co/kkpjYp9/Capture.png"],
+    "logo": "https://cdn.discordapp.com/app-icons/1417683739580039208/a32900f495e4d35e0ba091f3a73f7720.png",
+    "repo": "https://github.com/emjjkk/dreamweaver",
+    "demo": "https://dreamweaverdiscord.vercel.app",
+    "stack": ["Next.js", "DiscordJS", "HuggingFace"],
+    "category": "Discord Bot"
+  },
+  {
+    "title": "Spinnn",
+    "year": 2024,
+    "description": "Simple spinning wheel app I created with React and Vite. Nothing special - just option and color customization, and localstorage recording",
+    "images": ["https://i.ibb.co/hRsDw0rh/s1.png", "https://i.ibb.co/LzR50Xrq/s2.png"],
+    "logo": "https://cdn.discordapp.com/app-icons/1417683739580039208/a32900f495e4d35e0ba091f3a73f7720.png",
+    "repo": "https://github.com/emjjkk/spinnn",
+    "demo": "https://spinnn.emjjkk.tech",
+    "stack": ["React", "Vite"],
+    "category": "Web Application"
+  },
+  {
+    "title": "Vistab",
+    "year": 2025,
+    "description": "Chrome new tab extension with a modern interface and video background capabilities as well as bookmarks and to-do list",
+    "images": ["https://i.ibb.co/pBRt40Sw/v1.png", "https://i.ibb.co/X0fghXh/v3.png"],
+    "logo": "https://cdn.discordapp.com/app-icons/1417683739580039208/a32900f495e4d35e0ba091f3a73f7720.png",
+    "repo": "https://github.com/emjjkk/Vistab",
+    "demo": "https://emjjkk.tech",
+    "stack": ["Chrome Manifest V3", "HTML/CSS"],
+    "category": "Chrome Extension"
+  }
+]

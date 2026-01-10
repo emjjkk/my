@@ -1,0 +1,77 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <!-- Header -->
+  <section id="header" class="md:h-[50vh] flex flex-col justify-end pl-4 pr-4 md:pr-0 pt-4 mb-5">
+        <h1 class="text-2xl md:text-3xl mb-5">
+			Contact
+		</h1>
+        <h2 class="text-lg md:text-xl">Feel free to reach out to me for anything. Email me for serious work inquiries. Discord or Whatsapp works for everything else.</h2>
+    </section>
+
+  <!-- Contact info -->
+  <section class="pl-4 pr-4 md:pr-0 mb-10 space-y-3 text-md">
+    <p>
+      <strong>Email:</strong> 
+      <a href="mailto:hi@emjjkk.tech" class="text-neutral-400 hover:text-neutral-200">
+        hi@emjjkk.tech
+      </a>
+    </p>
+    <p>
+      <strong>Discord:</strong> 
+      <a href="https://discord.com/users/1100072616317952040" target="_blank" class="text-neutral-400 hover:text-neutral-200">
+        @e.mjjkk
+      </a>
+    </p>
+    <p>
+      <strong>WhatsApp:</strong> 
+      <a href="https://wa.me/+250724684275" target="_blank" class="text-neutral-400 hover:text-neutral-200">
+        +250 724 684 275
+      </a>
+    </p>
+    <p>
+      <strong>GitHub:</strong> 
+      <a href="https://github.com/emjjkk" target="_blank" class="text-neutral-400 hover:text-neutral-200">
+        @emjjkk
+      </a>
+    </p>
+    <p>
+      <strong>LinkedIn:</strong> 
+      <a href="https://linkedin.com/in/emjjkk" target="_blank" class="text-neutral-400 hover:text-neutral-200">
+        /in/emjjkk
+      </a>
+    </p>
+    <p>
+      <strong>Instagram:</strong> 
+      <a href="https://instagram.com/e.mjjkk" target="_blank" class="text-neutral-400 hover:text-neutral-200">
+        @e.mjjkk
+      </a>
+    </p>
+  </section>
+
+  <!-- Contact form -->
+  <section class="pl-4 pr-4 md:pr-0 max-w-3xl pb-10">
+    <form class="flex flex-col gap-4" action="https://formspree.io/f/yourformid" method="POST">
+      <div class="flex flex-col">
+        <label for="name" class="text-neutral-400 text-sm mb-1">Name</label>
+        <input type="text" name="name" id="name" required class="px-3 py-2 border border-neutral-700 bg-transparent focus:outline-none focus:border-neutral-500" />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="email" class="text-neutral-400 text-sm mb-1">Email</label>
+        <input type="email" name="email" id="email" required class="px-3 py-2 border border-neutral-700 bg-transparent focus:outline-none focus:border-neutral-500" />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="message" class="text-neutral-400 text-sm mb-1">Message</label>
+        <textarea name="message" id="message" rows="5" required class="px-3 py-2 border border-neutral-700 bg-transparent focus:outline-none focus:border-neutral-500 resize-none"></textarea>
+      </div>
+
+      <button type="submit" class="bg-neutral-800 text-white px-4 py-2 hover:bg-neutral-700 w-max">
+        Send
+      </button>
+    </form>
+  </section>
+</Layout>

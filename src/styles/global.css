@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+body {
+    font-family: "Stack Sans Text", sans-serif;
+}
+
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}

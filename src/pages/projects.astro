@@ -1,0 +1,97 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// ------------------
+// Types
+// ------------------
+type Project = {
+  title: string;
+  description: string;
+  images: string[];
+  logo?: string;
+  repo?: string;
+  demo?: string;
+  stack: string[];
+  category?: string;
+  year: number;
+};
+
+// ------------------
+// Import JSON
+// ------------------
+import projectsRaw from "../data/projects.json" assert { type: "json" };
+const projects = (projectsRaw as Project[]).sort((a, b) => b.year - a.year);
+---
+
+<Layout>
+  <section id="header" class="md:h-[50vh] flex flex-col justify-end pl-4 pr-4 md:pr-0 pt-4 mb-5">
+        <h1 class="text-2xl md:text-3xl mb-5">
+			Projects
+		</h1>
+        <h2 class="text-lg md:text-xl">These are some of the things I've worked on recently. Most of them are open-source on Github.</h2>
+    </section>
+
+  <section class="pl-4 pr-4 md:pr-0 max-w-4xl">
+    {projects.map((project, index) => (
+      <details
+        class="group border-b border-neutral-800 py-4"
+        open={index < 2}
+      >
+        <summary class="flex justify-between items-center cursor-pointer list-none">
+          <span class="text-lg">{project.title}</span>
+          <span class="text-neutral-500 text-sm">{project.year}</span>
+        </summary>
+
+        <div class="mt-4 space-y-4 text-md">
+
+          {/* Images (only if multiple) */}
+          {project.images?.length > 1 && (
+            <div class="flex gap-4 overflow-x-auto pb-2 hide-scrollbar">
+              {project.images.map((img) => (
+                <img
+                  src={img}
+                  alt={project.title}
+                  class="h-40 shrink-0 object-cover border border-neutral-800"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          )}
+
+          
+          <p class="text-neutral-300">{project.description}</p>
+
+          <div class="flex flex-wrap gap-2">
+            {project.stack.map((tech) => (
+              <span class="px-3 py-1 border border-neutral-700 text-sm">
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          {/* Links */}
+          <div class="flex gap-6 text-sm">
+            {project.repo && (
+              <a
+                href={project.repo}
+                target="_blank"
+                class="text-neutral-400 hover:text-neutral-200"
+              >
+                Repository
+              </a>
+            )}
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                class="text-neutral-400 hover:text-neutral-200"
+              >
+                Live Demo
+              </a>
+            )}
+          </div>
+        </div>
+      </details>
+    ))}
+  </section>
+</Layout>

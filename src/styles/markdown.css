@@ -1,0 +1,234 @@
+/* Apply general markdown styling */
+.blog-content {
+  line-height: 1.75;
+}
+
+@media (min-width: 768px) {
+  .blog-content {
+    padding: 0;
+  }
+}
+
+/* Headings */
+.blog-content h1 {
+  font-size: 1.75rem; /* 28px mobile */
+  font-weight: 700;
+  margin: 1.25rem 0 0.75rem;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .blog-content h1 {
+    font-size: 2.25rem; /* 36px desktop */
+    margin: 1.5rem 0 1rem;
+  }
+}
+
+.blog-content h2 {
+  font-size: 1.5rem; /* 24px mobile */
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .blog-content h2 {
+    font-size: 1.875rem; /* 30px desktop */
+    margin: 1.25rem 0 0.75rem;
+  }
+}
+
+.blog-content h3 {
+  font-size: 1.25rem; /* 20px mobile */
+  font-weight: 600;
+  margin: 0.875rem 0 0.5rem;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .blog-content h3 {
+    font-size: 1.5rem; /* 24px desktop */
+    margin: 1rem 0 0.5rem;
+  }
+}
+
+.blog-content h4 {
+  font-size: 1.125rem; /* 18px mobile */
+  font-weight: 600;
+  margin: 0.75rem 0 0.5rem;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .blog-content h4 {
+    font-size: 1.25rem; /* 20px desktop */
+  }
+}
+
+/* Paragraphs */
+.blog-content p {
+  margin: 0.75rem 0;
+  font-size: 0.9375rem; /* 15px mobile */
+}
+
+@media (min-width: 768px) {
+  .blog-content p {
+    font-size: 1rem; /* 16px desktop */
+  }
+}
+
+/* Links */
+.blog-content a {
+  color: #3b82f6;
+  text-decoration: underline;
+  word-break: break-word;
+}
+
+.blog-content a:hover {
+  color: #2563eb;
+}
+
+/* Lists */
+.blog-content ul,
+.blog-content ol {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+  font-size: 0.9375rem; /* 15px mobile */
+}
+
+@media (min-width: 768px) {
+  .blog-content ul,
+  .blog-content ol {
+    padding-left: 1.5rem;
+    font-size: 1rem; /* 16px desktop */
+  }
+}
+
+.blog-content li {
+  margin: 0.25rem 0;
+}
+
+/* Blockquotes */
+.blog-content blockquote {
+  border-left: 3px solid #3b82f6;
+  padding-left: 0.75rem;
+  margin: 0.75rem 0;
+  font-size: 0.9375rem; /* 15px mobile */
+  font-style: italic;
+}
+
+@media (min-width: 768px) {
+  .blog-content blockquote {
+    border-left: 4px solid #3b82f6;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-size: 1rem; /* 16px desktop */
+  }
+}
+
+/* Code blocks */
+.blog-content .codeblocku {
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.75rem !important; /* 12px mobile */
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto;
+  margin: 0.75rem -1rem; /* Full bleed on mobile */
+}
+
+@media (min-width: 768px) {
+  .blog-content .codeblocku {
+    font-size: 0.8rem !important; /* 12.8px desktop */
+    max-height: 500px;
+    margin: 1rem 0;
+  }
+}
+
+.codeblocku::-webkit-scrollbar:horizontal {
+  display: none;
+}
+
+/* Inline code */
+.blog-content code {
+  font-size: 0.875em;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  word-break: break-word;
+}
+
+/* Images */
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0;
+  margin: 0.75rem -1rem; /* Full bleed on mobile */
+  width: calc(100% + 2rem);
+}
+
+@media (min-width: 768px) {
+  .blog-content img {
+    margin: 1rem 0;
+    width: 100%;
+  }
+}
+
+/* Tables */
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.875rem; /* 14px mobile */
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 768px) {
+  .blog-content table {
+    font-size: 1rem; /* 16px desktop */
+    display: table;
+  }
+}
+
+.blog-content th,
+.blog-content td {
+  border: 1px solid #d1d5db;
+  padding: 0.5rem;
+  text-align: left;
+  min-width: 100px; /* Prevent cramped columns on mobile */
+}
+
+@media (min-width: 768px) {
+  .blog-content th,
+  .blog-content td {
+    padding: 0.5rem 1rem;
+    min-width: auto;
+  }
+}
+
+.blog-content th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Horizontal rules */
+.blog-content hr {
+  border: none;
+  border-top: 1px solid #d1d5db;
+  margin: 1.5rem 0;
+}
+
+@media (min-width: 768px) {
+  .blog-content hr {
+    margin: 2rem 0;
+  }
+}
+
+/* Pre tags (code block containers) */
+.blog-content pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
