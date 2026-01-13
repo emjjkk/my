@@ -31,6 +31,26 @@ try {
 }
 ---
 
+<Astro.head>
+  <title>{postMeta.title} | @emjjkk</title>
+  <meta name="description" content={postMeta.excerpt || postMeta.title} />
+  <link rel="canonical" href={`https://emjjkk.tech/p/${postMeta.slug}`} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={postMeta.title} />
+  <meta property="og:description" content={postMeta.excerpt || postMeta.title} />
+  <meta property="og:image" content={postMeta.image} />
+  <meta property="og:url" content={`https://emjjkk.tech/p/${postMeta.slug}`} />
+  <meta property="og:type" content="article" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={postMeta.title} />
+  <meta name="twitter:description" content={postMeta.excerpt || postMeta.title} />
+  <meta name="twitter:image" content={postMeta.image} />
+</Astro.head>
+
+
 <Layout>
 	<section id="header" class="md:h-[50vh] flex flex-col justify-end pl-4 pr-4 md:pr-0 pt-4 mb-5">
 		<a href="/"
@@ -60,6 +80,22 @@ try {
 <script is:inline>
 	hljs.highlightAll();
 </script>
+
+<script type="application/ld+json">
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": postMeta.title,
+  "author": {
+    "@type": "Person",
+    "name": "@emjjkk"
+  },
+  "datePublished": postMeta.date,
+  "image": postMeta.image,
+  "url": `https://emjjkk.tech/p/${postMeta.slug}`
+})}
+</script>
+
 
 <style is:global>
 	pre {
