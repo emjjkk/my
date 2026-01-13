@@ -6,21 +6,32 @@ import { marked } from 'marked';
 import fs from 'fs';
 import path from 'path';
 
+// Tell Astro to pre-render all pages
+export const prerender = true;
+
+// Generate static paths
+export async function getStaticPaths() {
+  return blogPosts
+    .filter(post => fs.existsSync(path.resolve('./public/p', `${post.slug}.md`))) // only if markdown exists
+    .map(post => ({
+      params: { slug: post.slug },
+    }));
+}
+
 // Get the slug for this page
 const { slug } = Astro.params;
 
-// Find the post metadata
+// Find post metadata
 const postMeta = blogPosts.find(p => p.slug === slug);
 
 if (!postMeta) {
   return Astro.redirect('/404');
 }
 
-// ✅ Read markdown safely at build time
+// Read markdown at build time
 let renderedContent = "<p>Failed to load post content.</p>";
 
 try {
-  // Use path relative to project root
   const filePath = path.resolve('./public/p', `${slug}.md`);
   const markdown = fs.readFileSync(filePath, 'utf-8');
   renderedContent = marked.parse(markdown);
@@ -48,29 +59,25 @@ try {
   <meta name="twitter:image" content={postMeta.image} />
 </Astro.head>
 
-
 <Layout>
-	<section id="header" class="md:h-[50vh] flex flex-col justify-end pl-4 pr-4 md:pr-0 pt-4 mb-5">
-		<a href="/"
-			class="text-sm text-blue-500 hover:text-blue-600 mb-2 inline-block"
-		>
-			← Back to home
-		</a>
-		<h1 class="text-2xl md:text-3xl my-2">{postMeta.title}</h1>
-
-		<div class="flex items-center gap-3 text-sm text-neutral-500">
-			<span>{postMeta.date}</span>
-			<span>•</span>
-			<span>{postMeta.readTime}</span>
-		</div>
-	</section>
-	<section id="body" class="pl-4 pr-4 md:pr-0 md:pb-6">
-		<main class="min-h-screen">
-			<article class="prose prose-invert max-w-none blog-content">
-				<div set:html={renderedContent} />
-			</article>
-		</main>
-	</section>
+  <section id="header" class="md:h-[50vh] flex flex-col justify-end pl-4 pr-4 md:pr-0 pt-4 mb-5">
+    <a href="/" class="text-sm text-blue-500 hover:text-blue-600 mb-2 inline-block">
+      ← Back to home
+    </a>
+    <h1 class="text-2xl md:text-3xl my-2">{postMeta.title}</h1>
+    <div class="flex items-center gap-3 text-sm text-neutral-500">
+      <span>{postMeta.date}</span>
+      <span>•</span>
+      <span>{postMeta.readTime}</span>
+    </div>
+  </section>
+  <section id="body" class="pl-4 pr-4 md:pr-0 md:pb-6">
+    <main class="min-h-screen">
+      <article class="prose prose-invert max-w-none blog-content">
+        <div set:html={renderedContent} />
+      </article>
+    </main>
+  </section>
 </Layout>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/nord.min.css">
