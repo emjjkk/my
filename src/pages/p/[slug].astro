@@ -6,29 +6,27 @@ import { marked } from 'marked';
 import fs from 'fs';
 import path from 'path';
 
-export async function getStaticPaths() {
-  return blogPosts.map((post) => ({
-    params: { slug: post.slug },
-  }));
-}
-
+// Get the slug for this page
 const { slug } = Astro.params;
-const postMeta = blogPosts.find((p) => p.slug === slug);
+
+// Find the post metadata
+const postMeta = blogPosts.find(p => p.slug === slug);
 
 if (!postMeta) {
-  return Astro.redirect("/404");
+  return Astro.redirect('/404');
 }
 
-const filePath = path.join(Astro.site, 'public', 'p', `${slug}.md`);
-let postContent = "";
+// ✅ Read markdown safely at build time
+let renderedContent = "<p>Failed to load post content.</p>";
+
 try {
-  postContent = fs.readFileSync(filePath, "utf-8");
+  // Use path relative to project root
+  const filePath = path.resolve('./public/p', `${slug}.md`);
+  const markdown = fs.readFileSync(filePath, 'utf-8');
+  renderedContent = marked.parse(markdown);
 } catch (err) {
-  console.error(err);
-  postContent = "Failed to load post content.";
+  console.error('Error reading markdown:', err);
 }
-
-const renderedContent = marked.parse(postContent);
 ---
 
 <Astro.head>
