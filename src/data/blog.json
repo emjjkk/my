@@ -1,9 +1,18 @@
 [
+    
+    {
+        "slug": "displaying-your-live-activity-on-your-own-website",
+        "title": "Displaying Your Live Activity on Your Own Website (Using NextJS + Redis + PreMiD)",
+        "image": "https://cdn-images-1.medium.com/max/800/1*4_7GBMUIo6zHJD0SJ64A8w.png",
+        "excerpt": "I showed how to take your PreMiD presence data — the stuff that shows what you’re watching, coding, or listening to — and display it live on your own website using a simple Next.js + Redis setup. It’s an easy way to make your portfolio feel alive and show what you’re up to in real time.",
+        "date": "Feb 2, 2026",
+        "readTime": "11 min read"
+    },
     {
         "slug": "building-and-deploying-a-discord-bot-at-zero-cost",
         "title": "Building and Deploying a Discord Bot Without A Persistent Connection",
         "excerpt": "You can build a Discord bot without running a persistent server by using Discord’s interaction-based model, where your bot only “wakes up” when a user triggers a slash command. Using Next.js edge functions for the interactions endpoint and Supabase for backend/database operations, you can handle commands like /ping, manage data, and deploy globally without worrying about server maintenance or cold starts.",
-        "date": "Jan 29, 2026",
+        "date": "Jan 4, 2026",
         "readTime": "14 min read"
     },
     {
@@ -12,13 +21,5 @@
         "excerpt": "The goal is to be able to search videos directly (because copying and pasting links is just not it), but also handle direct links when we do have them. The results should show thumbnails and basic details, and from there we should be able to download in either MP3 or MP4 format.",
         "date": "Nov 3, 2025",
         "readTime": "20 min read"
-    },
-    {
-        "slug": "displaying-your-live-activity-on-your-own-website",
-        "title": "Displaying Your Live Activity on Your Own Website (Using NextJS + Redis + PreMiD)",
-        "image": "https://cdn-images-1.medium.com/max/800/1*4_7GBMUIo6zHJD0SJ64A8w.png",
-        "excerpt": "I showed how to take your PreMiD presence data — the stuff that shows what you’re watching, coding, or listening to — and display it live on your own website using a simple Next.js + Redis setup. It’s an easy way to make your portfolio feel alive and show what you’re up to in real time.",
-        "date": "Oct 31, 2025",
-        "readTime": "11 min read"
     }
 ]
