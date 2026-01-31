@@ -1,5 +1,12 @@
 [
     {
+        "slug": "building-and-deploying-a-discord-bot-at-zero-cost",
+        "title": "Building and Deploying a Discord Bot Without A Persistent Connection",
+        "excerpt": "You can build a Discord bot without running a persistent server by using Discord’s interaction-based model, where your bot only “wakes up” when a user triggers a slash command. Using Next.js edge functions for the interactions endpoint and Supabase for backend/database operations, you can handle commands like /ping, manage data, and deploy globally without worrying about server maintenance or cold starts.",
+        "date": "Jan 29, 2026",
+        "readTime": "14 min read"
+    },
+    {
         "slug": "building-a-youtube-downloader-with-python-flask",
         "title": "Building a Youtube Downloader Application with Flask + yt-dlp",
         "excerpt": "The goal is to be able to search videos directly (because copying and pasting links is just not it), but also handle direct links when we do have them. The results should show thumbnails and basic details, and from there we should be able to download in either MP3 or MP4 format.",
