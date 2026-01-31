@@ -12,7 +12,7 @@ When a user runs a slash command, Discord sends an HTTPS POST request to your se
 
 In this post, I’m documenting how I set up a bot using this interaction-based approach.
 
-## Technologies
+### Technologies
 
 For the bot backend, I used Next.js, a framework I’m very familiar with. This lets me handle Discord interaction webhooks directly through API routes using the App Router, and deploy them globally as edge functions with Vercel. That means no cold starts and no server maintenance. An added bonus is that I can build a full landing page, dashboard, registration tools, or admin panels with React in the same project. Bot, backend, and website all live in one codebase, hosted in one place, which makes everything much easier to maintain.
 
@@ -39,7 +39,7 @@ DISCORD_PUBLIC_KEY=
 NEXT_PUBLIC_DISCORD_APPLICATION_ID=
 ```
 
-## Creating Your Discord Bot
+### Creating Your Discord Bot
 
 To obtain the required Discord credentials, I created and configured a Discord application in the Discord Developer Portal. I started by going to [https://discord.com/developers/applications](https://discord.com/developers/applications) and logging in with my Discord account. Once logged in, I clicked **New Application**, gave the application a name, and created it.
 
@@ -54,7 +54,7 @@ For `NEXT_PUBLIC_DISCORD_TOKEN`, I went to the **Bot** section in the left sideb
 This token is used to authenticate API requests made on behalf of the bot. Because it grants full access to the bot, it should be kept secret and never committed to source control, even if it is prefixed with `NEXT_PUBLIC` in the configuration.
 
 
-## Setting Up Supabase
+### Setting Up Supabase
 
 To set up Supabase, I started by visiting [https://supabase.com](https://supabase.com) and creating an account. After logging in, I created a new project by selecting **New Project**, choosing an organization, providing a project name, setting a database password, and selecting a region.
 
@@ -175,7 +175,7 @@ The service role key bypasses Row Level Security and allows the bot to perform p
 Separating this into its own `botClient.ts` file also makes the security boundary explicit. It reduces the risk of accidentally using the service role key in user-facing code, and makes it clear which parts of the system are allowed to perform privileged database operations.
 
 
-## Creating the Interactions Endpoint
+### Creating the Interactions Endpoint
 
 One of the most important pieces of a bot built with Discord’s new interaction model is the **interactions endpoint**. This is the URL that Discord calls whenever a user triggers a slash command, button, or other interaction. You can think of it as the bot’s “inbox,” receiving events from Discord and responding accordingly. In my project, I implemented this endpoint as a Next.js edge function so it could run globally and with low latency.
 
@@ -242,7 +242,7 @@ export async function POST(req: NextRequest) {
   }
 }
 ```
-## Handling Commands
+### Handling Commands
 
 Once the interaction endpoint is set up, the next piece of the puzzle is actually responding to specific user commands. That’s where the `handleCommand` function comes in. This function takes a parsed interaction from Discord and decides how the bot should reply. I wrote this in `lib/discord/commands.ts`
 
@@ -297,7 +297,7 @@ export async function getAllGuildMembers(guildId: string) {
 }
 ```
 
-## Registering Commands
+### Registering Commands
 
 After setting up the interactions endpoint and the command handler, the final piece to make your bot functional is registering the slash commands with Discord. Slash commands need to be explicitly registered so Discord knows they exist and can display them to users in the client. I handled this using the @discordjs/rest library. This is a script that you'll run directly in your command line before deploying your bot. If you add more commands going forward, you'll need to edit and run this script again.
 
@@ -362,7 +362,7 @@ This step is crucial because even though your bot can receive interactions and r
 
 For reference, the Discord documentation on registering commands explains the process in more detail: [Registering Slash Commands](https://discord.com/developers/docs/interactions/application-commands#registering-a-global-application-command).
 
-## Continuing From Here
+### Continuing From Here
 
 At this point, our setup is done, and I can build out the functionality of my bot over the existing boilerplate. I can build practically anything from here If you've been following along, here are a few additional tips to help you continue from here.
 
@@ -435,7 +435,7 @@ The code pulls the bot’s application ID from environment variables and sets th
 
 This dynamic approach is especially useful if your bot is deployed across multiple environments or if permissions ever change—you won’t have to manually update the link every time.
 
-## Deployment
+### Deployment
 
 This is our reward. Deployment is so simple
 
@@ -447,7 +447,7 @@ Deploying is as simple as connecting your GitHub repository to Vercel, selecting
 
 Because the endpoint runs as an edge function, there are no cold starts to worry about and no server maintenance. The bot is now live, fully serverless, and ready to respond to users across the world. You can update commands, tweak Supabase logic, or even add new pages to your frontend, and redeploy seamlessly without touching any traditional server infrastructure. The best part is? All your code - website, server - is all in one folder, deployed in one place.
 
-## Important Limitations
+### Important Limitations
 
 Now it's important to have a reality-check here. While the interaction-based model is incredibly convenient for serverless hosting, it does come with some important limitations that are worth noting. Unlike traditional bots that maintain a persistent WebSocket connection to Discord, an edge-function bot **cannot listen to arbitrary events** in real time. This means you **cannot** react to things like:
 
@@ -461,7 +461,7 @@ Another limitation is that commands and responses must complete quickly. Since e
 
 Despite these restrictions, this model works perfectly for **command-driven bots**, dashboards, and admin tools, and it keeps hosting costs at zero. It’s a trade-off: you give up passive event listening, but gain simplicity, scalability, and a fully serverless architecture.
 
-## Useful Links & References
+### Useful Links & References
 
 To help you explore further and build your bot even faster, here are some resources I relied on while putting this project together:
 
