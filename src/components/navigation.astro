@@ -18,4 +18,7 @@ const currentPath = Astro.url.pathname;
     <a href="/contact" class="relative hover:text-blue-700 flex items-center gap-2" class:list={[currentPath === '/contact' && 'text-blue-700']}> 
         <Send size={20} /> 
     </a> 
+    <a href="#" class="relative hover:text-blue-700 flex items-center gap-2" class:list={[currentPath === '/rr' && 'text-blue-700']}> 
+        <img src="/chicken.gif" alt="" class="relative left-1 w-6 -mt-1 h-auto">
+    </a>                                            
 </nav>
