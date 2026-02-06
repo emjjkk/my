@@ -4,87 +4,101 @@ import "../styles/global.css";
 import Navigation from "../components/navigation.astro";
 import RSidebar from "../components/rsidebar.astro";
 import bgVideo from "../assets/bg.mp4";
+
+// Accept SEO props
+const { title = "Emmanuel Alabi (@emjjkk) - Software Developer", 
+        description = "Personal blog of Emmanuel Alabi, software developer.", 
+        url = "https://yourdomain.com", 
+        image = "/default-og-image.png" } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Emmanuel Alabi (@emjjkk) - Software Developer</title>
-		<!--Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=Stack+Sans+Text:wght@200..700&display=swap"
-			rel="stylesheet"
-		/>
-		<style>
-			/* Mobile styles */
-			@media (max-width: 1024px) {
-				body {
-					padding-bottom: 80px; /* Space for fixed bottom nav */
-				}
-			}
-		</style>
-	</head>
-	<body class="font-body bg-black min-h-screen text-neutral-300">
-		<div class="relative h-screen overflow-hidden max-w-[1366px] mx-auto">
-			<!-- Video Background - Fixed on mobile -->
-			<video
-				autoplay
-				muted
-				playsinline
-				loop
-				class="absolute top-0 left-0 w-full h-full object-cover object-top pointer-events-none select-none fixed lg:absolute"
-			>
-				<source src={bgVideo} type="video/mp4" />
-			</video>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
 
-			<!-- Noise Overlay - Fixed on mobile -->
-			<div
-				class="absolute top-0 left-0 w-full h-full bg-black/90 bg-[url(https://cdn.prod.website-files.com/6674f0cdb5b7b401612cf015/6674f0cdb5b7b401612cf065_noise-50.avif)] bg-[200px] bg-center bg-opacity-25 pointer-events-none fixed lg:absolute"
-			>
-			</div>
+    <!-- SEO Meta -->
+    <meta name="description" content={description} />
+    <meta name="author" content="Emmanuel Alabi" />
 
-			<!-- Content -->
-			<main
-				class="relative z-10 bg-black/70 h-screen flex flex-col lg:flex-row gap-4 max-w-8xl mx-auto"
-			>
-				<!-- Desktop Navigation (left sidebar) -->
-				<div
-					class="hidden lg:block lg:w-[28%] border-r border-neutral-700"
-				>
-					<Navigation />
-				</div>
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={image} />
 
-				<!-- Main Content Area -->
-				<div
-					class="flex flex-1 overflow-y-auto hide-scrollbar flex-col lg:flex-row h"
-				>
-					<!-- Main content -->
-					<div class="w-full lg:w-[60%]">
-						<slot />
-					</div>
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
 
-					<!-- Right Sidebar -->
-					<div class="w-full lg:w-[40%] p-4 lg:sticky lg:top-[-55vh]">
-						<RSidebar />
-					</div>
-				</div>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=Stack+Sans+Text:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
 
-				<!-- Mobile Navigation (fixed bottom) -->
-				<nav
-					class="fixed bottom-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-t border-neutral-700 lg:hidden"
-				>
-					<div class="flex justify-around items-center h-15 px-4">
-						<Navigation />
-					</div>
-				</nav>
-			</main>
-		</div>
-		<script defer src="https://cloud.umami.is/script.js" data-website-id="5a665f32-69be-40cf-abea-7923b603a548"></script>
-	</body>
+    <style>
+      @media (max-width: 1024px) {
+        body {
+          padding-bottom: 80px; /* Space for fixed bottom nav */
+        }
+      }
+    </style>
+  </head>
+  <body class="font-body bg-black min-h-screen text-neutral-300">
+    <div class="relative h-screen overflow-hidden max-w-[1366px] mx-auto">
+      <!-- Video Background -->
+      <video
+        autoplay
+        muted
+        playsinline
+        loop
+        class="absolute top-0 left-0 w-full h-full object-cover object-top pointer-events-none select-none fixed lg:absolute"
+      >
+        <source src={bgVideo} type="video/mp4" />
+      </video>
+
+      <!-- Noise Overlay -->
+      <div
+        class="absolute top-0 left-0 w-full h-full bg-black/90 bg-[url(https://cdn.prod.website-files.com/6674f0cdb5b7b401612cf015/6674f0cdb5b7b401612cf065_noise-50.avif)] bg-[200px] bg-center bg-opacity-25 pointer-events-none fixed lg:absolute"
+      ></div>
+
+      <!-- Main Content -->
+      <main
+        class="relative z-10 bg-black/70 h-screen flex flex-col lg:flex-row gap-4 max-w-8xl mx-auto"
+      >
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:block lg:w-[28%] border-r border-neutral-700">
+          <Navigation />
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex flex-1 overflow-y-auto hide-scrollbar flex-col lg:flex-row h">
+          <div class="w-full lg:w-[60%]">
+            <slot />
+          </div>
+          <div class="w-full lg:w-[40%] p-4 lg:sticky lg:top-[-55vh]">
+            <RSidebar />
+          </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav class="fixed bottom-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-t border-neutral-700 lg:hidden">
+          <div class="flex justify-around items-center h-15 px-4">
+            <Navigation />
+          </div>
+        </nav>
+      </main>
+    </div>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="5a665f32-69be-40cf-abea-7923b603a548"></script>
+  </body>
 </html>

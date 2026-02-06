@@ -7,82 +7,105 @@ import fs from 'fs';
 import path from 'path';
 
 export async function getStaticPaths() {
-	return blogPosts.map((post) => ({
-		params: { slug: post.slug },
-	}));
+  return blogPosts.map(post => ({
+    params: { slug: post.slug },
+  }));
 }
 
 const { slug } = Astro.params;
-const postMeta = blogPosts.find((p) => p.slug === slug);
+const postMeta = blogPosts.find(p => p.slug === slug);
 
 if (!postMeta) {
-	return Astro.redirect("/404");
+  return Astro.redirect("/404");
 }
 
+// Read markdown file
 let renderedContent = "";
 try {
-	// Read the markdown file at build time, not runtime
-	const filePath = path.join(process.cwd(), 'public', 'p', `${slug}.md`);
-	const postContent = fs.readFileSync(filePath, 'utf-8');
-	renderedContent = marked.parse(postContent);
-} catch (error) {
-	console.error('Error reading markdown file:', error);
-	renderedContent = "<p>Failed to load post content.</p>";
+  const filePath = path.join(process.cwd(), 'public', 'p', `${slug}.md`);
+  const postContent = fs.readFileSync(filePath, 'utf-8');
+  renderedContent = marked.parse(postContent);
+} catch (err) {
+  console.error(err);
+  renderedContent = "<p>Failed to load post content.</p>";
 }
+
+// Prepare SEO props
+const seoTitle = `${postMeta.title} | Emmanuel Alabi`;
+const seoDescription = postMeta.excerpt || postMeta.excerpt || "Read this blog post by Emmanuel Alabi.";
+const seoUrl = `https://emjjkk.tech/p/${slug}`;
+const seoImage = postMeta.image || '/default-og-image.png';
+const tags = postMeta.tags?.join(', ');
 ---
 
-<Layout>
-	<section id="header" class="md:h-[50vh] flex flex-col justify-end pl-4 pr-4 md:pr-0 pt-4 mb-5">
-		<a href="/"
-			class="text-sm text-blue-500 hover:text-blue-600 mb-2 inline-block"
-		>
-			← Back to home
-		</a>
-		<h1 class="text-2xl md:text-3xl my-2">{postMeta.title}</h1>
+<Layout title={seoTitle} description={seoDescription} url={seoUrl} image={seoImage}>
+  <!-- Header -->
+  <section id="header" class="md:h-[50vh] flex flex-col justify-end pl-4 pr-4 md:pr-0 pt-4 mb-5">
+    <a href="/" class="text-sm text-blue-500 hover:text-blue-600 mb-2 inline-block">
+      ← Back to home
+    </a>
+    <h1 class="text-2xl md:text-3xl my-2">{postMeta.title}</h1>
+    <div class="flex items-center gap-3 text-sm text-neutral-500">
+      <span>{postMeta.date}</span>
+      <span>•</span>
+      <span>{postMeta.readTime}</span>
+    </div>
+  </section>
 
-		<div class="flex items-center gap-3 text-sm text-neutral-500">
-			<span>{postMeta.date}</span>
-			<span>•</span>
-			<span>{postMeta.readTime}</span>
-		</div>
-	</section>
-	<section id="body" class="pl-4 pr-4 md:pr-0 md:pb-6">
-		<main class="min-h-screen">
-			<article class="prose prose-invert max-w-none blog-content">
-				<div set:html={renderedContent} />
-			</article>
-		</main>
-	</section>
+  <!-- Body -->
+  <section id="body" class="pl-4 pr-4 md:pr-0 md:pb-6">
+    <main class="min-h-screen md:pt-5">
+      <article class="prose prose-invert max-w-none blog-content">
+        <div set:html={renderedContent} />
+      </article>
+    </main>
+  </section>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "{postMeta.title}",
+      "author": { "@type": "Person", "name": "Emmanuel Alabi" },
+      "datePublished": "{postMeta.date}",
+      "url": "{seoUrl}",
+      "image": "{seoImage}",
+      "description": "{seoDescription}",
+      "keywords": "{tags}"
+    }
+  </script>
+
+  <!-- Highlight.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/nord.min.css">
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script is:inline>
+    hljs.highlightAll();
+  </script>
+
+  <style is:global>
+    pre {
+      background: black !important;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem !important;
+      margin: 1.5rem 0;
+      max-height: 400px;
+      overflow-y: auto;
+      overflow-x: auto;
+    }
+    pre code {
+      background: transparent !important;
+      padding: 0 !important;
+      border-radius: 0;
+      border: none;
+    }
+    :not(pre) > code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.375rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.875em;
+    }
+  </style>
 </Layout>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/nord.min.css">
-<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script is:inline>
-	hljs.highlightAll();
-</script>
-
-<style is:global>
-	pre {
-		background: black !important;
-		border-radius: 0.75rem;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		padding: 1.5rem !important;
-		margin: 1.5rem 0;
-		max-height: 400px;
-		overflow-y: auto;
-		overflow-x: auto;
-	}
-	pre code {
-		background: transparent !important;
-		padding: 0 !important;
-		border-radius: 0;
-		border: none;
-	}
-	:not(pre) > code {
-		background: rgba(255, 255, 255, 0.1);
-		padding: 0.2rem 0.4rem;
-		border-radius: 0.375rem;
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		font-size: 0.875em;
-	}
-</style>
