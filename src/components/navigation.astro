@@ -5,7 +5,7 @@ import { House, User, Folder, Send } from '@lucide/astro';
 const currentPath = Astro.url.pathname;
 --- 
 
-<nav class="w-full h-full flex flex-row lg:flex-col gap-8 lg:gap-5 items-center lg:items-end justify-around lg:justify-center text-neutral-200 p-6"> 
+<nav class="w-full h-full flex flex-row lg:flex-col gap-8 lg:gap-5 items-center lg:items-end justify-around lg:justify-center muted p-6"> 
     <a href="/" class="relative hover:text-blue-700 flex items-center gap-2" class:list={[currentPath === '/' && 'text-blue-700']}> 
         <House size={20} /> 
     </a> 
@@ -17,8 +17,5 @@ const currentPath = Astro.url.pathname;
     </a> 
     <a href="/contact" class="relative hover:text-blue-700 flex items-center gap-2" class:list={[currentPath === '/contact' && 'text-blue-700']}> 
         <Send size={20} /> 
-    </a> 
-    <a href="https://cloud.umami.is/analytics/eu/share/d9mqoykbZehkb3mI" target="__blank" class="relative hover:text-blue-700 flex items-center gap-2" class:list={[currentPath === '/rr' && 'text-blue-700']}> 
-        <img src="/chicken.gif" alt="" class="relative left-1 w-6 -mt-1 h-auto">
-    </a>                                            
+    </a>                                             
 </nav>

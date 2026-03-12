@@ -9,7 +9,7 @@ import blogPosts from "../data/blog.json";
 <Layout>
 	<section id="header" class="md:h-[50vh] flex flex-col justify-end pl-4 pr-4 md:pr-0 pt-4 mb-10">
 		<h1 class="text-2xl md:text-3xl mb-5">
-			I'm <span class="text-white">Emmanuel</span>, a software developer
+			I'm <span class="theme-text">Emmanuel</span>, a software developer
 			currently specializing in full-stack web and app development.
 		</h1>
 		<p class="text-md mb-5">
@@ -19,37 +19,15 @@ import blogPosts from "../data/blog.json";
 			bots and chrome extensions.
 		</p>
 		<div class="flex gap-2">
-			<button
-				class="text-sm relative overflow-hidden px-3 py-2 rounded-lg
-	bg-neutral-950/90 border border-white/10
-	text-neutral-300 transition-colors duration-300 group"
-			>
-				<span
-					class="absolute inset-0 bg-white/10 translate-x-[-100%]
-		group-hover:translate-x-0 transition-transform duration-300 ease-out"
-				></span>
-				<span
-					class="relative z-10 group-hover:text-white transition-colors duration-300"
-				>
-					See my projects
-				</span>
-			</button>
-
-			<button
-				class="text-sm relative overflow-hidden px-3 py-2 rounded-lg
-	bg-neutral-950/90 border border-white/10
-	text-neutral-300 transition-colors duration-300 group"
-			>
-				<span
-					class="absolute inset-0 bg-white/10 translate-x-[-100%]
-		group-hover:translate-x-0 transition-transform duration-300 ease-out"
-				></span>
-				<span
-					class="relative z-10 group-hover:text-white transition-colors duration-300"
-				>
-					Contact Me
-				</span>
-			</button>
+			<a href="/projects" class="text-sm px-3 py-2 rounded-lg btn transition-colors duration-200 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-400">
+				See my projects
+			</a>
+			<a href="/contact" class="text-sm px-3 py-2 rounded-lg btn transition-colors duration-200 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-400">
+				Contact Me
+			</a>
+			<a href="/resume.pdf" class="text-sm px-3 py-2 rounded-lg btn transition-colors duration-200 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-400" target="_blank" rel="noopener noreferrer">
+				Resume
+			</a>
 		</div>
 	</section>
 	<section id="body" class="pl-4 pr-4 md:pr-0">
@@ -63,7 +41,7 @@ import blogPosts from "../data/blog.json";
 					<h3 class="text-md mb-1">
 						{post.title}
 					</h3>
-					<p class="text-sm text-neutral-400 line-clamp-3">
+					<p class="text-sm muted line-clamp-3">
 						{post.excerpt}
 					</p>
 				</a>

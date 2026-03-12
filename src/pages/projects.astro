@@ -34,12 +34,12 @@ const projects = (projectsRaw as Project[]).sort((a, b) => b.year - a.year);
   <section class="pl-4 pr-4 md:pr-0 max-w-4xl">
     {projects.map((project, index) => (
       <details
-        class="group border-b border-neutral-800 py-4"
+        class="group border-b theme-border py-4"
         open={index < 2}
       >
         <summary class="flex justify-between items-center cursor-pointer list-none">
           <span class="text-lg">{project.title}</span>
-          <span class="text-neutral-500 text-sm">{project.year}</span>
+          <span class="muted text-sm">{project.year}</span>
         </summary>
 
         <div class="mt-4 space-y-4 text-md">
@@ -51,7 +51,7 @@ const projects = (projectsRaw as Project[]).sort((a, b) => b.year - a.year);
                 <img
                   src={img}
                   alt={project.title}
-                  class="h-40 shrink-0 object-cover border border-neutral-800"
+                  class="h-40 shrink-0 object-cover border theme-border"
                   loading="lazy"
                 />
               ))}
@@ -59,11 +59,11 @@ const projects = (projectsRaw as Project[]).sort((a, b) => b.year - a.year);
           )}
 
           
-          <p class="text-neutral-300">{project.description}</p>
+          <p class="muted">{project.description}</p>
 
           <div class="flex flex-wrap gap-2">
             {project.stack.map((tech) => (
-              <span class="px-3 py-1 border border-neutral-700 text-sm">
+              <span class="px-3 py-1 border theme-border text-sm">
                 {tech}
               </span>
             ))}
@@ -75,7 +75,7 @@ const projects = (projectsRaw as Project[]).sort((a, b) => b.year - a.year);
               <a
                 href={project.repo}
                 target="_blank"
-                class="text-neutral-400 hover:text-neutral-200"
+                class="muted hover:theme-text"
               >
                 Repository
               </a>
@@ -84,7 +84,7 @@ const projects = (projectsRaw as Project[]).sort((a, b) => b.year - a.year);
               <a
                 href={project.demo}
                 target="_blank"
-                class="text-neutral-400 hover:text-neutral-200"
+                class="muted hover:theme-text"
               >
                 Live Demo
               </a>

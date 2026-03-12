@@ -6,40 +6,34 @@ import { ArrowRight, Sparkles } from "@lucide/astro";
 <div class="relative">
     <div class="hidden md:block h-[50vh] mb-10"></div>
     <div class="md:px-6 sticky top-5">
-        <div class="relative">
-            <!-- Solid background -->
-            <div class="absolute inset-0 rounded-xl bg-neutral-950/90"></div>
-
-            <!-- Contour layer + content -->
-            <div
-                class="relative rounded-xl bg-c bg-opacity-50 border border-white/10 p-4 mb-4 flex flex-col gap-3"
-            >
+        <div class="relative mb-4">
+            <div class="rounded-xl card border-[1.5px] border-black/20 dark:border-white/20 p-4 flex flex-col gap-3">
                 <div class="flex items-center gap-2">
                     <img
                         src="https://avatars.githubusercontent.com/u/49512755?v=4"
                         alt="Profile"
-                        class="w-12 h-12 rounded-full object-cover border border-white/10"
+                        class="w-12 h-12 rounded-full object-cover avatar-border"
                     />
                     <div>
-                        <p class="text-sm font-medium text-white">
+                        <p class="text-sm font-medium theme-text">
                             Emmanuel Alabi (@emjjkk)
                         </p>
-                        <p class="text-xs text-neutral-400">
+                        <p class="text-xs muted">
                             Software dev, college student
                         </p>
                     </div>
                 </div>
 
-                <p class="text-xs text-neutral-400 leading-relaxed">
+                <p class="text-xs muted leading-relaxed">
                     I build fast and functional websites and applications. I
                     often experiment with unconventional methods. If I'm not
                     coding, I'm probably busy with college work, playing video
                     games or doing tiktok edits.
                 </p>
 
-                <p class="text-sm font-medium text-white">Subscribe, maybe?</p>
+                <p class="text-sm font-medium theme-text">Subscribe, maybe?</p>
 
-                <p class="text-xs text-neutral-400 leading-relaxed">
+                <p class="text-xs muted leading-relaxed">
                     Occasional drops. UI ideas, dev notes, and experiments.
                 </p>
 
@@ -47,7 +41,7 @@ import { ArrowRight, Sparkles } from "@lucide/astro";
                     href="https://gumroad.com/emjjkk"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="mb-1 inline-flex items-center justify-between gap-2 rounded-lg bg-white/5 border border-white/10 px-3 py-2 text-xs text-white hover:bg-white/10 transition"
+                    class="mb-1 inline-flex items-center justify-between gap-2 rounded-lg btn px-3 py-2 text-xs transition"
                 >
                     <span>Subscribe</span>
                     <ArrowRight size={14} />
@@ -56,29 +50,29 @@ import { ArrowRight, Sparkles } from "@lucide/astro";
                 <div class="flex gap-3 pt-1">
                     <Github
                         size={16}
-                        class="text-neutral-400 hover:text-white transition"
+                            class="muted hover:theme-text transition"
                     />
                     <Twitter
                         size={16}
-                        class="text-neutral-400 hover:text-white transition"
+                            class="muted hover:theme-text transition"
                     />
                     <Linkedin
                         size={16}
-                        class="text-neutral-400 hover:text-white transition"
+                            class="muted hover:theme-text transition"
                     />
                 </div>
             </div>
-        </div>
+            </div>
         <div
-            class="w-full rounded-xl bg-neutral-950/90 border border-white/10 p-4 flex flex-col gap-3"
+            class="w-full rounded-xl card border-[1.5px] border-black/20 dark:border-white/20 p-4 flex flex-col gap-3"
         >
             <div class="flex items-center gap-2">
-                <Sparkles size={14} class="text-neutral-300" />
-                <p class="text-sm font-medium text-white">Open for work</p>
+                <Sparkles size={14} class="muted" />
+                    <p class="text-sm font-medium theme-text">Open for work</p>
             </div>
 
             <div class="flex flex-col gap-1">
-                <p class="text-xs text-neutral-400 leading-relaxed">
+                     <p class="text-xs muted leading-relaxed">
                    Custom dev services including web development, stream overlays, and Discord/Telegram bots. Fast, clean, and tailored to your needs.
                 </p>
             </div>
@@ -87,13 +81,13 @@ import { ArrowRight, Sparkles } from "@lucide/astro";
                 href="https://work.emjjkk.tech"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center justify-between gap-2 rounded-lg bg-white/5 border border-white/10 px-3 py-2 text-xs text-white hover:bg-white/10 transition"
+                class="inline-flex items-center justify-between gap-2 rounded-lg btn px-3 py-2 text-xs transition"
             >
                 <span>Learn More</span>
                 <ArrowRight size={14} />
             </a>
         </div>
         <p class="text-xs pt-3 pb-1">Some things are best viewed without a rulebook</p>
-        <p class="text-xs pb-3">&copy;2025 Emmanuel A. Made with Astro & TailwindCSS</p>
+        <p class="text-xs pb-3 muted">&copy;2025 Emmanuel A. Made with Astro & TailwindCSS</p>
     </div>
 </div>

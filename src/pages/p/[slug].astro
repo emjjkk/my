@@ -24,7 +24,14 @@ let renderedContent = "";
 try {
   const filePath = path.join(process.cwd(), 'public', 'p', `${slug}.md`);
   const postContent = fs.readFileSync(filePath, 'utf-8');
-  renderedContent = marked.parse(postContent);
+  const parsed = marked.parse(postContent);
+  if (typeof parsed === 'string') {
+    renderedContent = parsed;
+  } else if (parsed instanceof Promise) {
+    renderedContent = await parsed;
+  } else {
+    renderedContent = String(parsed);
+  }
 } catch (err) {
   console.error(err);
   renderedContent = "<p>Failed to load post content.</p>";
@@ -45,7 +52,7 @@ const tags = postMeta.tags?.join(', ');
       ← Back to home
     </a>
     <h1 class="text-2xl md:text-3xl my-2">{postMeta.title}</h1>
-    <div class="flex items-center gap-3 text-sm text-neutral-500">
+    <div class="flex items-center gap-3 text-sm muted">
       <span>{postMeta.date}</span>
       <span>•</span>
       <span>{postMeta.readTime}</span>
@@ -85,14 +92,15 @@ const tags = postMeta.tags?.join(', ');
 
   <style is:global>
     pre {
-      background: black !important;
+      background: var(--surface) !important;
       border-radius: 0.75rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border);
       padding: 1.5rem !important;
       margin: 1.5rem 0;
       max-height: 400px;
       overflow-y: auto;
       overflow-x: auto;
+      color: var(--text);
     }
     pre code {
       background: transparent !important;
@@ -101,11 +109,12 @@ const tags = postMeta.tags?.join(', ');
       border: none;
     }
     :not(pre) > code {
-      background: rgba(255, 255, 255, 0.1);
+      background: color-mix(in srgb, var(--text) 6%, transparent 94%);
       padding: 0.2rem 0.4rem;
       border-radius: 0.375rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border);
       font-size: 0.875em;
+      color: var(--text);
     }
   </style>
 </Layout>
