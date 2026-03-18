@@ -14,8 +14,22 @@ const {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" style="background:#000;">
   <head>
+    <!-- Prevent theme flash: set theme before page renders and set html background inline -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme = stored || (prefersDark ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+          var bg = theme === 'dark' ? '#000000' : '#f8fafc';
+          document.documentElement.style.background = bg;
+          document.body && (document.body.style.background = bg);
+        } catch (e) {}
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -56,6 +70,15 @@ const {
     </style>
   </head>
   <body class="font-body min-h-screen">
+    <!-- Loading overlay (visible by default to mask initial flash) -->
+    <div id="loading-overlay" aria-busy="true" style="position:fixed;z-index:9999;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:auto;transition:opacity 0.3s;">
+      <div style="width:3rem;height:3rem;border:4px solid var(--muted);border-top:4px solid var(--text);border-radius:50%;animation:spin 1s linear infinite;"></div>
+    </div>
+    <style>
+      @keyframes spin { 100% { transform: rotate(360deg); } }
+      #loading-overlay[aria-busy="true"] { display: flex; opacity: 1; }
+      #loading-overlay { opacity: 0; pointer-events: none; }
+    </style>
     <div class="relative h-screen overflow-hidden max-w-[1366px] mx-auto">
       <!-- Main Content -->
       <main
@@ -89,23 +112,56 @@ const {
       </main>
     </div>
     <script>
-      (function () {
-        const stored = localStorage.getItem("theme");
-        const prefersDark =
-          window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const theme = stored || (prefersDark ? "dark" : "light");
-        document.documentElement.setAttribute("data-theme", theme);
-        (window as any).toggleTheme = function () {
-          const current =
-            document.documentElement.getAttribute("data-theme") === "dark"
-              ? "dark"
-              : "light";
-          const next = current === "dark" ? "light" : "dark";
-          document.documentElement.setAttribute("data-theme", next);
-          localStorage.setItem("theme", next);
-        };
-      })();
+      // Theme toggle (keep for manual switching)
+      // @ts-ignore
+      window["toggleTheme"] = function () {
+        const current = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+        const next = current === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        // Update background color immediately
+        var bg = next === 'dark' ? '#000000' : '#f8fafc';
+        document.documentElement.style.background = bg;
+        document.body && (document.body.style.background = bg);
+      };
+      // Loading overlay for navigation + initial load
+      if (typeof window !== 'undefined') {
+        let overlay = document.getElementById('loading-overlay');
+        // Helper to hide overlay
+        function hideOverlay() {
+          if (!overlay) return;
+          overlay.setAttribute('aria-busy', 'false');
+          overlay.style.opacity = '0';
+          overlay.style.pointerEvents = 'none';
+        }
+
+        // Sync overlay background with the inline background set earlier
+        try {
+          var bgFromHtml = document.documentElement.style.background;
+          if (overlay && bgFromHtml) overlay.style.background = bgFromHtml;
+        } catch (e) {}
+
+        // Hide overlay once the initial DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+          // small delay to ensure paints complete
+          setTimeout(hideOverlay, 80);
+        });
+
+        if (overlay) {
+          // Show overlay on navigation start
+          window.addEventListener('astro:before-navigate', () => {
+            overlay.setAttribute('aria-busy', 'true');
+            overlay.style.opacity = '1';
+            overlay.style.pointerEvents = 'auto';
+            // ensure background matches current html background
+            try { overlay.style.background = document.documentElement.style.background; } catch (e) {}
+          });
+          // Hide overlay on navigation end
+          window.addEventListener('astro:after-navigate', () => {
+            setTimeout(hideOverlay, 80);
+          });
+        }
+      }
     </script>
     <script
       defer
