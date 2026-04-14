@@ -1,5 +1,13 @@
 [
-    
+    {
+        "slug": "building-an-offline-first-ide-with-llm-support",
+        "title": "Building an Offline-First IDE with LLM Support using Vite + React",
+        "image": "https://cdn-images-1.medium.com/max/800/1*4_7GBMUIo6zHJD0SJ64A8w.png",
+        "excerpt": "A deeply detailed journal entry of every decision, every file, and every line of code that went into building a fully local, AI-powered web IDE in the browser.",
+        "date": "Apr 14, 2026",
+        "readTime": "11 min read",
+        "tags": ["Vite", "React", "AI IDE", "Web Development"]
+    },
     {
         "slug": "displaying-your-live-activity-on-your-own-website",
         "title": "Displaying Your Live Activity on Your Own Website (Using NextJS + Redis + PreMiD)",

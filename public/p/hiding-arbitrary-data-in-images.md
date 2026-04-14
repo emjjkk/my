@@ -1,1 +1,0 @@
-In 2018, a US citizen of chinese descent working as an engineer at General Electric was accused of  siphoning off proprietary data related to the optimization of turbine engines, by hiding it in an image of a sunset with the filename `dawn.jpg`
