@@ -6,6 +6,43 @@ import { marked } from 'marked';
 import fs from 'fs';
 import path from 'path';
 
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function renderSketchNote(text: string) {
+  return `<span class="sketch-note" aria-label="Handwritten annotation"><span class="sketch-note__arrow" aria-hidden="true"></span><span class="sketch-note__text">${escapeHtml(text.trim() || text)}</span></span>`;
+}
+
+function renderAnnotatedText(text: string) {
+  const annotationPattern = /\{([^{}]+)\}/g;
+  let output = '';
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = annotationPattern.exec(text)) !== null) {
+    output += escapeHtml(text.slice(lastIndex, match.index));
+    output += renderSketchNote(match[1]);
+    lastIndex = match.index + match[0].length;
+  }
+
+  output += escapeHtml(text.slice(lastIndex));
+  return output;
+}
+
+marked.use({
+  renderer: {
+    text(token) {
+      return renderAnnotatedText(token.text);
+    },
+  },
+});
+
 export async function getStaticPaths() {
   return blogPosts.map(post => ({
     params: { slug: post.slug },

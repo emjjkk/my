@@ -3,6 +3,7 @@ import "../styles/global.css";
 
 import Navigation from "../components/navigation.astro";
 import RSidebar from "../components/rsidebar.astro";
+import SketchDecorations from "../components/SketchDecorations.astro";
 
 // Accept SEO props
 const {
@@ -80,6 +81,7 @@ const {
       #loading-overlay { opacity: 0; pointer-events: none; }
     </style>
     <div class="relative h-screen overflow-hidden max-w-[1366px] mx-auto">
+      <SketchDecorations />
       <!-- Main Content -->
       <main
         class="relative z-10 surface h-screen flex flex-col lg:flex-row gap-4 max-w-8xl mx-auto"

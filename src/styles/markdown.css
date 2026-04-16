@@ -83,6 +83,55 @@
   color: #2563eb;
 }
 
+/* Handwritten annotations */
+.blog-content .sketch-note {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin: 0 0.3rem 0.15rem 0.15rem;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.blog-content .sketch-note__text {
+  display: inline-block;
+  padding: 0.08rem 0.45rem 0.18rem;
+  border: 1px solid color-mix(in srgb, var(--text) 20%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 88%, var(--text) 4%);
+  color: var(--text);
+  font-family: "Fraunces", serif;
+  font-size: 0.74em;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  transform: rotate(-2deg);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--text) 8%, transparent);
+}
+
+.blog-content .sketch-note__arrow {
+  position: absolute;
+  left: -0.9rem;
+  top: 50%;
+  width: 0.8rem;
+  border-top: 2px solid color-mix(in srgb, var(--text) 70%, transparent);
+  transform: translateY(-50%) rotate(-12deg);
+  transform-origin: right center;
+  opacity: 0.8;
+}
+
+.blog-content .sketch-note__arrow::after {
+  content: "↖";
+  position: absolute;
+  right: -0.1rem;
+  top: -0.95rem;
+  color: color-mix(in srgb, var(--text) 70%, transparent);
+  font-size: 0.95rem;
+  line-height: 1;
+  transform: rotate(-14deg);
+}
+
 /* Lists */
 .blog-content ul,
 .blog-content ol {
