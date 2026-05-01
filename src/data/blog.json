@@ -1,7 +1,7 @@
 [
     {
-        "slug": "i-built-a-discord-bot-for-the-uopeople-study-group",
-        "title": "I Built a Discord Bot to Save The Sanity of 600+ Server Members",
+        "slug": "building-a-discord-bot-for-the-uopeople-study-group",
+        "title": "Building a Discord Bot to Save The Sanity of 600+ Server Members",
         "image": "https://cdn-images-1.medium.com/max/800/1*4_7GBMUIo6zHJD0SJ64A8w.png",
         "excerpt": "A detailed breakdown of how I built a real, production Discord bot with slash commands, automated moderation, scheduled tasks, and a serverless architecture.",
         "date": "May 1, 2026",
@@ -27,18 +27,10 @@
         "tags": ["Next.js", "Redis", "PreMiD", "Web Development"]
     },
     {
-        "slug": "building-and-deploying-a-discord-bot-at-zero-cost",
-        "title": "Building and Deploying a Discord Bot Without A Persistent Connection",
-        "excerpt": "You can build a Discord bot without running a persistent server by using Discord’s interaction-based model, where your bot only “wakes up” when a user triggers a slash command. Using Next.js edge functions for the interactions endpoint and Supabase for backend/database operations, you can handle commands like /ping, manage data, and deploy globally without worrying about server maintenance or cold starts.",
-        "date": "Jan 4, 2026",
-        "readTime": "14 min read",
-        "tags": ["Discord Bot", "Next.js", "Supabase", "Serverless"]
-    },
-    {
         "slug": "building-a-youtube-downloader-with-python-flask",
         "title": "Building a Youtube Downloader Application with Flask + yt-dlp",
         "excerpt": "The goal is to be able to search videos directly (because copying and pasting links is just not it), but also handle direct links when we do have them. The results should show thumbnails and basic details, and from there we should be able to download in either MP3 or MP4 format.",
-        "date": "Nov 3, 2025",
+        "date": "Jan 21, 2025",
         "readTime": "20 min read",
         "tags": ["Python", "Flask", "yt-dlp", "Web Development"]
     }
