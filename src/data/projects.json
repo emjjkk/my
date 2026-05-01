@@ -1,12 +1,23 @@
 [
   {
-    "title": "Markd",
-    "year": 2025,
-    "description": "Markdown editor built with NextJS and React-Markdown, with the ability to publish pages with sharable links.",
-    "images": ["https://i.ibb.co/WNXDCh6q/m1.png", "https://i.ibb.co/7tkV3zyX/m2.png", "https://i.ibb.co/NdFzNPjs/m3.png", "https://i.ibb.co/n88VHcwX/m4.png", "https://i.ibb.co/CpPrhGWj/m5.png"],
+    "title": "MyDoc",
+    "year": 2026,
+    "description": "An open-source markdown based editor designed for simplicity. Offers a clean, minimal writing space. Everything is autosaved locally and never leaves your device, with options to export as PDF, DOCX, or RTF.",
+    "images": ["https://i.ibb.co/dJ0xxYSL/Screenshot-119.png", "https://i.ibb.co/1GnkkCp3/Screenshot-120.png"],
     "logo": "https://cdn.discordapp.com/app-icons/1417683739580039208/a32900f495e4d35e0ba091f3a73f7720.png",
-    "repo": "https://github.com/emjjkk/markd",
-    "demo": "https://markd.emjjkk.tech",
+    "repo": "https://github.com/emjjkk/mydoc",
+    "demo": "https://mydoc.emjjkk.tech",
+    "stack": ["Next.js", "TailwindCSS", "Typescript"],
+    "category": "Progressive Web Application"
+  },
+  {
+    "title": "MyDE",
+    "year": 2026,
+    "description": "A simplem local-first editor that allows you to use any LLM of your choice and saves automatically everything - projects, preferences - to your localstorage. Useful for prototyping quick landing pages and simple web apps with AI, includes a full-featured code editor as well as download and export to github features.",
+    "images": ["https://i.ibb.co/ymnpVFk8/Screenshot-121.png", "https://i.ibb.co/N6BJVHzw/Screenshot-122.png"],
+    "logo": "https://cdn.discordapp.com/app-icons/1417683739580039208/a32900f495e4d35e0ba091f3a73f7720.png",
+    "repo": "https://github.com/emjjkk/myde",
+    "demo": "https://myde.emjjkk.tech",
     "stack": ["Next.js", "NeonDB", "Drizzle"],
     "category": "Web Application"
   },
@@ -20,17 +31,6 @@
     "demo": "https://dictionary.emjjkk.tech",
     "stack": ["Next.js", "TailwindCSS", "Axios"],
     "category": "Web Application"
-  },
-  {
-    "title": "Dreamweaver",
-    "year": 2025,
-    "description": "AI Image generation discord bot running 100% on edge, built using NextJS, Vercel, Supabase, and Huggingface Inference API",
-    "images": ["https://i.ibb.co/XZPJMMdP/Capture.png", "https://i.ibb.co/kkpjYp9/Capture.png"],
-    "logo": "https://cdn.discordapp.com/app-icons/1417683739580039208/a32900f495e4d35e0ba091f3a73f7720.png",
-    "repo": "https://github.com/emjjkk/dreamweaver",
-    "demo": "https://dreamweaverdiscord.vercel.app",
-    "stack": ["Next.js", "DiscordJS", "HuggingFace"],
-    "category": "Discord Bot"
   },
   {
     "title": "Spinnn",

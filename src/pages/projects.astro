@@ -19,7 +19,7 @@ type Project = {
 // ------------------
 // Import JSON
 // ------------------
-import projectsRaw from "../data/projects.json" assert { type: "json" };
+import projectsRaw from "../data/projects.json";
 const projects = (projectsRaw as Project[]).sort((a, b) => b.year - a.year);
 ---
 
@@ -34,7 +34,7 @@ const projects = (projectsRaw as Project[]).sort((a, b) => b.year - a.year);
   <section class="pl-4 pr-4 md:pr-0 max-w-4xl">
     {projects.map((project, index) => (
       <details
-        class="group border-b theme-border py-4"
+        class="group border-b theme-border py-5"
         open={index < 2}
       >
         <summary class="flex justify-between items-center cursor-pointer list-none">
@@ -44,16 +44,26 @@ const projects = (projectsRaw as Project[]).sort((a, b) => b.year - a.year);
 
         <div class="mt-4 space-y-4 text-md">
 
-          {/* Images (only if multiple) */}
-          {project.images?.length > 1 && (
+          {/* Images */}
+          {project.images?.length > 0 && (
             <div class="flex gap-4 overflow-x-auto pb-2 hide-scrollbar">
               {project.images.map((img) => (
-                <img
-                  src={img}
-                  alt={project.title}
-                  class="h-40 shrink-0 object-cover border theme-border"
-                  loading="lazy"
-                />
+                <button
+                  type="button"
+                  class="group relative h-52 shrink-0 overflow-hidden border theme-border focus:outline-none"
+                  data-lightbox-trigger
+                  data-lightbox-src={img}
+                  data-lightbox-alt={`${project.title} preview`}
+                  aria-label={`Open ${project.title} preview`}
+                >
+                  <img
+                    src={img}
+                    alt={project.title}
+                    class="h-full w-auto object-cover transition-transform duration-300 hover:scale-105"
+                    loading="lazy"
+                  />
+                  <span class="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10"></span>
+                </button>
               ))}
             </div>
           )}
@@ -94,4 +104,75 @@ const projects = (projectsRaw as Project[]).sort((a, b) => b.year - a.year);
       </details>
     ))}
   </section>
+
+  <div
+    id="lightbox"
+    class="fixed inset-0 z-[10000] hidden items-center justify-center bg-black/90 px-4 py-8"
+    aria-hidden="true"
+  >
+    <button
+      type="button"
+      class="absolute inset-0 cursor-zoom-out"
+      data-lightbox-close
+      aria-label="Close image preview"
+    ></button>
+    <div class="relative z-10 max-h-full">
+      <img
+        id="lightbox-image"
+        src=""
+        alt=""
+        class="w-full h-full max-h-[90vh] max-w-[95vw] border border-white/10 object-contain shadow-2xl"
+      />
+      <button
+        type="button"
+        class="absolute -right-2 -top-2 rounded-full bg-white/10 px-3 py-1 text-sm text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+        data-lightbox-close
+      >
+        Close
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const openTriggers = document.querySelectorAll('[data-lightbox-trigger]');
+    const closeTriggers = document.querySelectorAll('[data-lightbox-close]');
+
+    function openLightbox(src, alt) {
+      if (!lightbox || !lightboxImage) return;
+      lightboxImage.src = src;
+      lightboxImage.alt = alt || 'Image preview';
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      if (!lightbox || !lightboxImage) return;
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+      lightboxImage.alt = '';
+      document.body.style.overflow = '';
+    }
+
+    openTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        openLightbox(trigger.getAttribute('data-lightbox-src') || '', trigger.getAttribute('data-lightbox-alt') || 'Image preview');
+      });
+    });
+
+    closeTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', closeLightbox);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
 </Layout>

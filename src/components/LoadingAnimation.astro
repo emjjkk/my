@@ -1,0 +1,77 @@
+---
+/**
+  * Reusable Loading Animation Component
+  * Displays a loading overlay with the loading cat GIF
+  * Covers entire viewport and properly syncs with page load
+  */
+---
+<div id="loading-overlay" aria-busy="true" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;background:#000;display:flex;align-items:center;justify-content:center;opacity:1;pointer-events:auto;transition:opacity 0.3s ease-out;">
+  <img 
+    src="https://media.tenor.com/XoRLL0SkhggAAAAM/livasmol-loading-cat.gif" 
+    alt="Loading..." 
+    style="width:auto;height:auto;max-width:100px;max-height:100px;"
+  />
+</div>
+
+<style>
+  #loading-overlay[aria-busy="true"] { 
+    display: flex; 
+    opacity: 1; 
+  }
+  #loading-overlay { 
+    opacity: 0; 
+    pointer-events: none; 
+  }
+</style>
+
+<script>
+  // Loading overlay for navigation + initial load
+  if (typeof window !== 'undefined') {
+    let overlay = document.getElementById('loading-overlay');
+    
+    // Helper to hide overlay
+    function hideOverlay() {
+      if (!overlay) return;
+      overlay.setAttribute('aria-busy', 'false');
+      overlay.style.opacity = '0';
+      overlay.style.pointerEvents = 'none';
+    }
+
+    // Helper to update overlay background to match current theme
+    function updateOverlayBackground() {
+      if (!overlay) return;
+    try {
+        const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const bg = theme === 'dark' ? '#000000' : '#f8fafc';
+        overlay.style.background = bg;
+    } catch (e) {}
+    }
+
+    // Initial background update
+    updateOverlayBackground();
+
+    // Hide overlay once the page is fully loaded (all resources)
+    window.addEventListener('load', () => {
+      // Wait for next frame to ensure all paints are complete
+      requestAnimationFrame(() => {
+        setTimeout(hideOverlay, 150);
+      });
+    });
+
+    if (overlay) {
+      // Show overlay on navigation start
+      window.addEventListener('astro:before-navigate', () => {
+        overlay.setAttribute('aria-busy', 'true');
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'auto';
+        updateOverlayBackground();
+      });
+      // Hide overlay on navigation end
+      window.addEventListener('astro:after-navigate', () => {
+        requestAnimationFrame(() => {
+          setTimeout(hideOverlay, 150);
+        });
+      });
+    }
+  }
+</script>
