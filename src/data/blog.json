@@ -1,5 +1,14 @@
 [
     {
+        "slug": "i-built-a-discord-bot-for-the-uopeople-study-group",
+        "title": "I Built a Discord Bot to Save The Sanity of 600+ Server Members",
+        "image": "https://cdn-images-1.medium.com/max/800/1*4_7GBMUIo6zHJD0SJ64A8w.png",
+        "excerpt": "A detailed breakdown of how I built a real, production Discord bot with slash commands, automated moderation, scheduled tasks, and a serverless architecture.",
+        "date": "May 1, 2026",
+        "readTime": "19 min read",
+        "tags": ["Discord Bot", "NextJS", "Websockets", "Discord Moderation Bot"]
+    },
+    {
         "slug": "building-an-offline-first-ide-with-llm-support",
         "title": "Building an Offline-First IDE with LLM Support using Vite + React",
         "image": "https://cdn-images-1.medium.com/max/800/1*4_7GBMUIo6zHJD0SJ64A8w.png",
