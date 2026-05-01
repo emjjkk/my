@@ -1,18 +1,14 @@
 Okay so this is the second post in what I'm starting to consider my "built while waiting for Valorant to find me a match" series. The first one was MyDE. This one is a Discord bot that is, as of right now, actively running and being used by hundreds of people in the UoPeople Study Group Discord server. That feels worth writing about.
 
-For context on the backstory: I'm a student at the University of the People. There's no official UoPeople Discord server run by the university, but there are several unofficial student-run study group servers. The one I participate the most in is the the UoPeople Study Group server, the biggest one. It's got something like 600 members, students from all over the world, and it's been running for years as a completely volunteer effort. I've been a member for a while, and at some point I started paying attention to the kinds of problems the admins were dealing with.
+For context on the backstory: I'm a student at the University of the People. There's no official UoPeople Discord server run by the university, but there are several unofficial student-run study group servers. The one I participate the most in is the the UoPeople Study Group server, the biggest one. It's got something like 600 members, students from all over the world, and it's been running for years as a completely volunteer effort.
 
 The two big ones that kept coming up were raids and scam posts. Discord raids are when someone joins a server specifically to cause chaos — posting spam, pinging everyone with `@everyone` or `@here`, generally making life miserable for the people trying to study. The fact that new members could join and immediately ping the entire server was an obvious hole. The scam post problem was a different flavor of the same thing: someone joins, posts a Discord invite link or a phishing URL, and before any human moderator can react, fifty people have already seen it.
-
-There's another, the second largest, UoPeople Discord server called UoPeople DSG, and they have their own in-house bot that handles a lot of this. It does verification, moderation, the works. A few people asked if they could use it or get access to the code. The answer was no — it's their bot, their code, totally their right. But it did leave the UoPeopleSG server in the position of needing something similar with no path to just borrowing one. So I volunteered to build it. The head admin said go ahead because what choice did he have.
 
 The plan was a verification system that gates new members behind a button click before they can see any channels (which kills raids almost entirely), automated moderation that watches for scam links and invite links and acts on them faster than any human can. There was also going to be a honeypot channel that instabans users that post in it, since scam raids have a pattern of posting in every channel they can access. A few legit members posted here despite warnings and will be missed. In addition, since we're going to have a bot anyway, we can have welcome messages for new members, a scheduled task that scrapes UoPeople's press release page and posts new articles to a dedicated channel, and a channel that auto-purges its contents twice a day (this was previously done manually).
 
 And I wanted to host it for as close to zero dollars as possible, because I'm a student at a low-tuition university and spending money on hobby projects feels philosophically inconsistent.
 
 Here's how I built it.
-
----
 
 ## Step 1: The Architecture Decision That Saved Me Money
 
@@ -56,7 +52,7 @@ data/
   last-press.json                       # Persisted state for press release tracking
 ```
 
----
+ 
 
 ## Step 2: Scaffolding the Next.js App
 
@@ -86,7 +82,7 @@ The dependencies are minimal but specific:
 
 `discord-interactions` is Discord's official library for verifying interaction signatures and working with the Interactions API — it's much lighter than `discord.js` and doesn't carry any WebSocket or Gateway code. `@discordjs/rest` is Discord.js's REST client, which I use in the slash command registration script. `cheerio` is jQuery-style HTML parsing for the server side, used in the press release scraper. The listener has its own `package.json` in `listener/` with `discord.js` listed there separately, keeping the two dependency trees clean.
 
----
+ 
 
 ## Step 3: Verifying Discord's Signature
 
@@ -141,7 +137,7 @@ Three things worth noting here. First, `export const runtime = 'edge'` puts this
 
 The `PUBLIC_KEY` variable falls back between two env var names because I was being pragmatic during development — `NEXT_PUBLIC_` variables are accessible in client-side code, which is a security antipattern for production but convenient during local dev with ngrok.
 
----
+ 
 
 ## Step 4: Slash Commands and the Verification System
 
@@ -241,7 +237,7 @@ The `flags: 64` on all the response messages marks them as ephemeral — only th
 
 The `BLANK_ICON` custom emoji in the panel message is a 1x1 transparent pixel uploaded as a custom emoji — a common Discord trick for adding spacing or visual padding in messages where you can't use regular whitespace freely.
 
----
+ 
 
 ## Step 5: Registering the Slash Commands
 
@@ -282,7 +278,7 @@ Running `npx tsx scripts/register.ts` prompts for a bot token and application ID
 
 Global command registration can take up to an hour to propagate across Discord's infrastructure. During development, you'd register commands to a specific guild ID instead (instant propagation), and then switch to global registration before going to production.
 
----
+ 
 
 ## Step 6: The Gateway Listener
 
@@ -325,7 +321,7 @@ client.once("clientReady", () => {
 
 `ActivityType.Watching` gives the bot "Watching the UoPeople Study Group Discord Server" as its status, which is a small touch but makes it look more intentional than the default "Playing a game."
 
----
+ 
 
 ## Step 7: The Scam Detection and Moderation Logic
 
@@ -402,7 +398,7 @@ await message.guild.members.ban(message.author.id, {
 
 `WATCH_CHANNEL_ID` is a channel that should have zero legitimate messages posted in it — it exists as a honeypot. If anyone posts there, they get banned immediately, no questions asked. This is specifically the channel that raiders were exploiting for server-wide pings, so the rule is intentionally nuclear: if you're posting there, you're either a raider or you've ignored every warning in the channel, and either way the outcome is the same.
 
----
+ 
 
 ## Step 8: Welcome Messages
 
@@ -431,7 +427,7 @@ The `${member}` interpolation in the message content resolves to a Discord user 
 
 The `member.guild.channels.fetch()` call is important rather than using a cached reference — on bot startup, the channel cache might not be fully populated yet, and a cold fetch ensures you always get the channel even if the cache is stale.
 
----
+ 
 
 ## Step 9: Scheduled Tasks via GitHub Actions
 
@@ -491,7 +487,7 @@ The `permissions: contents: write` is required for the workflow to commit back t
 
 Using the git repository itself as the state store is a little unconventional, but it has some nice properties: the state is human-readable, versioned, and auditable. If something goes wrong, you can look at the git history and see exactly when each press release was first detected. And it costs exactly nothing.
 
----
+ 
 
 ## Step 10: The Press Release Scraper
 
@@ -552,7 +548,7 @@ Because Discord messages have a 2,000 character limit, the article content gets 
 async function postToDiscord(press: { url: string; title: string; image: string | null; content: string | null }) {
   let headerMessage = `## New Press Release from University of the People\n`
   headerMessage += `# ${press.title}\n`
-  headerMessage += `**[Read the full article here](${press.url})**\n---\n`
+  headerMessage += `**[Read the full article here](${press.url})**\n \n`
 
   await fetch(`https://discord.com/api/v10/channels/${CHANNEL_ID}/messages`, {
     method: "POST",
@@ -577,7 +573,7 @@ async function postToDiscord(press: { url: string; title: string; image: string 
 
 The 100ms delay between chunk messages is a small courtesy to Discord's rate limiter. Discord's rate limits for bot messages are relatively generous, but when you're posting multiple messages in quick succession, adding a small sleep is better than hitting a 429 and having to implement retry logic.
 
----
+ 
 
 ## Step 11: The Channel Purger
 
@@ -642,7 +638,7 @@ The `res.clone()` before parsing the body is necessary because Response bodies c
 
 The purge runs in a `while(true)` loop with a safety cap of 200 iterations, fetching and deleting 100 messages per iteration. The loop exits when `fetchBatch` returns an empty array (channel is empty). The safety cap prevents infinite loops if something goes wrong and the channel never empties for some reason.
 
----
+ 
 
 ## Step 12: The Homepage
 
@@ -677,7 +673,7 @@ The status pills are hardcoded as "Online" rather than being dynamically fetched
 
 The permissions value of `8` in the invite URL is the Administrator permission, which gives the bot everything it needs. In a production bot you'd scope this down to the minimum required permissions, but for a server-specific bot that's already been reviewed by the server admins before installation, Administrator is acceptable.
 
----
+ 
 
 ## Step 13: Environment Variables and the Security Antipattern I Did On Purpose
 
@@ -697,7 +693,7 @@ The `.gitignore` includes `.env*` to make sure no local env files ever accidenta
 
 The listener gets its token from `listener/.env`, which is also gitignored. The only state that does get committed is `data/last-press.json`, which contains nothing sensitive — just a public URL.
 
----
+ 
 
 ## Did It Work?
 
