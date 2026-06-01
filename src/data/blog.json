@@ -1,5 +1,14 @@
 [
     {
+        "slug": "writing-a-lowkey-goated-python-script-for-beat-detection",
+        "title": "Writing a Lowkey Goated Python Script To Detect Beats from Audio Files",
+        "image": "https://cdn-images-1.medium.com/max/800/1*4_7GBMUIo6zHJD0SJ64A8w.png",
+        "excerpt": "Built a Python tool to automatically detect meaningful beats, drops, and transients in music and export them as DaVinci Resolve markers. Started as a personal solution for montage editing, ended up becoming one of my most-starred GitHub projects.",
+        "date": "May 28, 2026",
+        "readTime": "19 min read",
+        "tags": ["Librosa", "Essentia", "beat detection", "Python"]
+    },
+    {
         "slug": "building-a-discord-bot-for-the-uopeople-study-group",
         "title": "Building a Discord Bot to Save The Sanity of 3600+ Server Members",
         "image": "https://cdn-images-1.medium.com/max/800/1*4_7GBMUIo6zHJD0SJ64A8w.png",
