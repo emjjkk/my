@@ -1,6 +1,6 @@
 If you're a developer, this is your sign to build a project you have absolutely no clue about, because you will learn it on the way.
 
-I have a hobby that most people in my circle don't know about. I make montage edits. Not the cringe slideshows-with-transitions kind — the actual cinematic, cut-to-the-beat, fan-edit kind that you see floating around on Twitter and YouTube with three million views and no context about who made them. My main subjects are celebrities I go through phases obsessing over, and right now that's Karina from aespa. If you know, you know. If you don't, go watch their stages and come back in two hours when you've lost your mind a little.
+I have a hobby that most people in my circle don't know about. I make montage edits. Not the cringe slideshows-with-transitions kind — the actual cinematic, cut-to-the-beat, fan-edit kind that you see floating around on TikTok and YouTube with three million views and no context about who made them. My main subjects are celebrities I go through phases obsessing over, and right now that's Karina from aespa. If you know, you know. If you don't, go watch their stages and come back in two hours when you've lost your mind a little.
 
 The tool I use is DaVinci Resolve, which is genuinely one of the most impressive pieces of software you can get for free. The color grading alone is industry standard. But here's the thing — making a good montage edit isn't really about color grading. It's about the sync. The whole visual language of a well-made edit is built on cuts that land exactly on the beat, transitions that breathe in the spaces between hits, moments that punch forward right when the bass drops. When it works, it feels almost physical to watch. When it doesn't, the whole thing feels sloppy even if every individual clip looks beautiful.
 
@@ -338,4 +338,4 @@ It'd be cool if I could turn this into a web app. The honest answer is that I'm 
 
 But the fact that the repo is sitting at where it is, with zero promotion and a specific enough use case that I genuinely didn't expect anyone else to need it, is the kind of signal worth paying attention to. If enough people are finding this organically, maybe there's something worth building here.
 
-For now though, it does exactly what I needed it to do. The Karina edits are in sync enough and create a positive feedback loop of obsession. That's enough.
+For now though, it does exactly what I needed it to do. The Karina edits are in sync enough to create a positive feedback loop of obsession. That's enough.
