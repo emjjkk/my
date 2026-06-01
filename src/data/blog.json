@@ -1,7 +1,7 @@
 [
     {
         "slug": "building-a-discord-bot-for-the-uopeople-study-group",
-        "title": "Building a Discord Bot to Save The Sanity of 600+ Server Members",
+        "title": "Building a Discord Bot to Save The Sanity of 3600+ Server Members",
         "image": "https://cdn-images-1.medium.com/max/800/1*4_7GBMUIo6zHJD0SJ64A8w.png",
         "excerpt": "A detailed breakdown of how I built a real, production Discord bot with slash commands, automated moderation, scheduled tasks, and a serverless architecture.",
         "date": "May 1, 2026",
