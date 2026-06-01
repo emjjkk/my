@@ -1,5 +1,3 @@
-# Writing a Lowkey Goated Python Script To Detect Beats from Audio Files
-
 If you're a developer, this is your sign to build a project you have absolutely no clue about, because you will learn it on the way.
 
 I have a hobby that most people in my circle don't know about. I make montage edits. Not the cringe slideshows-with-transitions kind — the actual cinematic, cut-to-the-beat, fan-edit kind that you see floating around on Twitter and YouTube with three million views and no context about who made them. My main subjects are celebrities I go through phases obsessing over, and right now that's Karina from aespa. If you know, you know. If you don't, go watch their stages and come back in two hours when you've lost your mind a little.
@@ -21,9 +19,10 @@ That felt simple enough that I figured I could just build it myself. Famously, t
 
 Before I get into the code, I want to mention something that still kind of baffles me. This repo — a small Python utility script I built for myself during queue timers — is one of the only things I've ever put on GitHub that got beyond five stars without me doing any promotion whatsoever. No post, no Reddit thread, no newsletter mention. I didn't even write a great README initially. It just quietly accumulated stars from people who apparently had the exact same problem I had, which is a better form of validation than anything you can engineer. There's a whole category of tools that exist in this gap between "I need this" and "nothing adequate exists" and when you build in that gap and share it, people find you eventually.
 
+You can find the repo here: [https://github.com/emjjkk/beat-detection/](https://github.com/emjjkk/beat-detection/).
+
 Anyway. The code.
 
----
 
 ## Step 1: Starting with Librosa
 
@@ -100,7 +99,7 @@ for beat in beats:
 
 The `round(float(t), 3)` converts everything to millisecond precision before deduplication. Without rounding, timestamps like `1.3999999999` and `1.4000000001` would be treated as different events. The minimum gap filter (100ms by default) removes cases where beat tracking and onset detection both fired on the same event and ended up slightly offset from each other.
 
----
+ 
 
 ## The EDL Format
 
@@ -132,7 +131,7 @@ def seconds_to_timecode(seconds, fps=30):
 
 The frames component is the fractional second converted to a frame count at your chosen FPS. If your Resolve project is at 24fps and you generate the EDL at 30fps, every marker will be at the wrong position. The `--fps` argument exists for exactly this reason — always match it to your project timeline.
 
----
+ 
 
 ## Step 2: The Essentia Upgrade
 
@@ -148,7 +147,7 @@ pip install essentia numpy
 
 The architecture of the Essentia script has four distinct stages that run in sequence: beat tracking, onset detection, loudness filtering, and smart spacing. Let me walk through each one.
 
----
+ 
 
 ### Beat Tracking with BeatTrackerMultiFeature
 
@@ -163,7 +162,7 @@ def detect_beats(audio):
 
 `BeatTrackerMultiFeature` is Essentia's most accurate beat tracker. As the name suggests, it uses multiple feature streams — spectral flux, loudness, complex spectral difference — and combines them to produce a more robust beat estimate than any single feature alone. It also returns a confidence score, which I'm not using here but could be used to filter out sections where the tracker is uncertain (a breakdown with no drums, for example).
 
----
+ 
 
 ### Onset Detection with HFC
 
@@ -218,7 +217,7 @@ Normalizing to 0–1 and then zeroing out values below the threshold means we're
 
 The threshold values were determined empirically. I ran the script against a bunch of tracks I actually edit to and tuned the numbers until the output at each sensitivity level felt right for its intended use case.
 
----
+ 
 
 ### Loudness Filtering
 
@@ -254,7 +253,7 @@ At the default `--loudness 70`, we keep only markers that fall in moments at or 
 
 The percentile threshold rather than an absolute threshold is important. Using an absolute dB threshold would work differently on a heavily compressed track versus a dynamically rich orchestral recording. The percentile is self-calibrating — it's always relative to the track's own dynamic range, not some external reference.
 
----
+ 
 
 ### Smart Spacing
 
@@ -275,7 +274,7 @@ def smart_spacing(times, min_gap=0.5):
 
 This is a greedy algorithm that walks through the sorted timestamp list and keeps a timestamp only if it's at least `min_gap` seconds after the last kept timestamp. The default is 500ms. You generally can't cut faster than about 12 frames at 24fps and have it register as a distinct cut rather than a flash — and you usually don't want to be anywhere near that limit. Half a second gives you a minimum clip length that's still fast but actually visible.
 
----
+ 
 
 ### Snapping Onsets to Beats
 
@@ -304,7 +303,7 @@ The snap function says: if an onset is within 80ms of a beat, snap it to the bea
 
 The combined output — beats plus snapped onsets — goes through the loudness filter and spacing filter before becoming the final marker list.
 
----
+ 
 
 ## Using It
 
@@ -331,7 +330,7 @@ The output goes to `output/beats.txt` (raw timestamps, one per line) and `output
 
 The first time I ran it against one of my actual edit tracks and imported the result into Resolve, I had maybe 30 markers across a 3-minute song, all sitting on meaningful musical moments — the drops, the main snare hits, the transition points. No cleanup needed. It saved a genuinely embarrassing amount of time.
 
----
+ 
 
 ## What's Next, Maybe
 
