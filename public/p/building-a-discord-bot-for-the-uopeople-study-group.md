@@ -1,4 +1,4 @@
-I'm a student at the University of the People. There's no official UoPeople Discord server run by the university, but there are several unofficial student-run study group servers. The one I participate the most in is the the UoPeople Study Group server, the biggest one. It's got something like 600 members, students from all over the world, and it's been running for years as a completely volunteer effort.
+I'm a student at the University of the People. There's no official UoPeople Discord server run by the university, but there are several unofficial student-run study group servers. The one I participate the most in is the the UoPeople Study Group server, the biggest one. It's got something like 3600 members, students from all over the world, and it's been running for years as a completely volunteer effort.
 
 The server had one problem though. Raids happened so often. Once or twice a month. Discord raids are when someone joins a server specifically to cause chaos — posting spam and causing a notifaction for everyone with `@everyone`. These posts were usually scam posts and the ping pissed everyone off and there were complaints about the server security that I, as an admin, was probably responsible to heed.
 
@@ -669,38 +669,13 @@ export default function Home() {
 }
 ```
 
-The status pills are hardcoded as "Online" rather than being dynamically fetched from each service — the page itself loading is evidence that the Next.js app (Interactions + Tasks) is up, and the Listener status would require a separate health check endpoint that felt like over-engineering for now. This is intentionally pragmatic. If the listener goes down, someone will notice; I don't need a green dot to tell me.
-
-The permissions value of `8` in the invite URL is the Administrator permission, which gives the bot everything it needs. In a production bot you'd scope this down to the minimum required permissions, but for a server-specific bot that's already been reviewed by the server admins before installation, Administrator is acceptable.
-
- 
-
-## Step 13: Environment Variables and the Security Antipattern I Did On Purpose
-
-This is the part where I have to be honest about a thing. Several environment variables in this project use the `NEXT_PUBLIC_` prefix, which means they're exposed to client-side JavaScript. For a public-facing consumer app, this would be a serious security issue — anyone who visits the page can open DevTools and read any `NEXT_PUBLIC_` variable. For a Discord bot token, this would be catastrophic; someone could use your token to take over your bot.
-
-The README explicitly calls this out:
-
-> Do not store real bot tokens in `NEXT_PUBLIC_*` variables for production. Rotate any tokens that were ever committed or shared.
-
-The `NEXT_PUBLIC_` fallback exists purely because of how I was developing locally — I was iterating fast and the distinction between server and client env vars wasn't worth dealing with until later. In production, every sensitive variable (`DISCORD_TOKEN`, `DISCORD_PUBLIC_KEY`, `DISCORD_BOT_TOKEN`) uses the non-public name and lives in Vercel's environment variable settings, never in `.env` files committed to the repo.
-
-The `.gitignore` includes `.env*` to make sure no local env files ever accidentally get committed:
-
-```gitignore
-.env*
-```
-
-The listener gets its token from `listener/.env`, which is also gitignored. The only state that does get committed is `data/last-press.json`, which contains nothing sensitive — just a public URL.
-
- 
 
 ## Did It Work?
 
-Yeah, actually. The raid problem is basically gone — new members see a verification screen and nothing else until they click the button. The scam posts get deleted and the poster gets timed out usually within a second or two of posting, which is faster than any human moderator could react. The welcome messages are working, the press releases are getting posted, and the sensitive channel is purging on schedule. Ultimately as a mod of the server I can stop reading complaints of the server security when someone comes and pings the entire server with a suspicious link
+Yes. The raid problem is basically gone — new members see a verification screen and nothing else until they click the button. The scam posts get deleted and the poster gets timed out usually within a second or two of posting, which is faster than any human moderator could react. The welcome messages are working, the press releases are getting posted, and the sensitive channel is purging on schedule. Ultimately as a mod of the server I can stop reading complaints of the server security when someone comes and pings the entire server with a suspicious link.
 
 The total hosting cost is zero dollars. Vercel's hobby tier covers the Next.js app comfortably — the interactions endpoint and task endpoints are invoked maybe a few hundred times a day total, nowhere near any limits. GitHub Actions covers the cron jobs. The listener is the only thing that needs a persistent host, and the free teir of Railway handles it fine since `discord.js` is not resource-hungry when it's just listening for events.
 
 If you want to build something similar, the repo is public on [Github](https://github.com/emjjkk/uopsg-bot). The `scripts/register.ts` flow works for any bot — point it at your token and application ID and it'll register whatever commands you define. The architecture pattern scales up easily; adding a new slash command is a few lines in `commands.ts` and a new entry in the `commands` array in `register.ts`.
 
-Until the next time I build something to save the mental health of 600 discord users.
+Until the next time I build something to save the mental health of 3600 discord users.
