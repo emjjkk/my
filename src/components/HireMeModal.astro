@@ -1,0 +1,94 @@
+---
+// This component checks for ?ref=card query parameter and shows a modal
+---
+
+<div id="hire-me-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+  <div class="bg-white dark:bg-gray-900 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+    <!-- Close Button -->
+    <div class="flex justify-end p-4 border-b border-gray-200 dark:border-gray-700">
+      <button id="close-modal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Modal Content -->
+    <div class="p-6 md:p-8">
+      <!-- Heading -->
+      <h2 class="text-3xl md:text-4xl font-bold mb-2 theme-text">Yes, absolutely hire me</h2>
+      <p class="text-gray-600 dark:text-gray-400 mb-6">Let's discuss your project and how I can help</p>
+
+      <!-- Contact Details -->
+      <div class="mb-8 space-y-3 bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+        <h3 class="font-semibold text-lg mb-4">Quick Contact Info</h3>
+        
+        <div class="space-y-2">
+          <p class="flex items-center gap-2">
+            <span class="font-medium min-w-20">Email:</span>
+            <a href="mailto:hi@emjjkk.tech" class="text-blue-600 dark:text-blue-400 hover:underline">
+              hi@emjjkk.tech
+            </a>
+          </p>
+          
+          <p class="flex items-center gap-2">
+            <span class="font-medium min-w-20">Discord:</span>
+            <a href="https://discord.com/users/1100072616317952040" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">
+              @e.mjjkk
+            </a>
+          </p>
+          
+          <p class="flex items-center gap-2">
+            <span class="font-medium min-w-20">WhatsApp:</span>
+            <a href="https://wa.me/+250724684275" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">
+              +250 724 684 275
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Cal.com Embed -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-lg mb-4">Schedule a Call</h3>
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+          <script type="text/javascript" src="https://app.cal.com/embed.js"></script>
+          <div style="width:100%;height:500px;overflow:hidden;">
+            <iframe src="https://cal.com/emjjkk" style="width:100%;height:100%;border:none;border-radius:8px;" frameborder="0"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Close Button -->
+      <button id="close-modal-btn" class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-300 font-medium">
+        No let me think about it first
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('hire-me-modal');
+    const closeButtons = document.querySelectorAll('#close-modal, #close-modal-btn');
+
+    // Check for ref=card query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('ref') === 'card') {
+      modal?.classList.remove('hidden');
+    }
+
+    // Close modal
+    closeButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        modal?.classList.add('hidden');
+      });
+    });
+
+    // Close modal when clicking outside (on the overlay)
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+      }
+    });
+  });
+</script>
