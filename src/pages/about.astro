@@ -17,19 +17,114 @@ import {
 		</h1>
         <h2 class="text-lg md:text-xl">Software Developer & College Student. I work mostly with Javascript (NextJS, Astro) and Python (Flask, Django) based frameworks.</h2>
     </section>
-    <section id="body" class="pl-4 pr-4 md:pr-0 mb-10">
-        <p class="text-md mb-4">My name is Emmanuel Alabi, but you can call me Thursday.</p>
 
-        <p class="text-md mb-4">Just your resident software dev. I'm a Thai-Nigerian and currently based in Rwanda while I persue my BSc in Computer Science. Very familiar with Javascript (NextJS, Astro) and Python (Flask, Django) for web development and the development of all other products which depend on a web server (e.g. Whatsapp bots, chrome extensions, mobile apps, etc).</p>
+    <section id="body" class="pl-4 pr-4 md:pr-0 pb-10">
 
-        <p class="text-md mb-4" >I've built projects like <a href="https://myde.emjjkk.tech" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">MyDE</a> - a web IDE with LLM support; <a href="https://mydoc.emjjkk.tech" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">MyDoc</a> - a simple markdown-based editor; and wrote python scripts for <a href="https://github.com/emjjkk/beat-detection" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">audio beat detection</a>. I also independently built <a href="https://ngozis-kitchen.co.uk" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Ngozis Kitchen</a> in full, including its ordering system and admin dashboards, under the supervision of <a href="https://cometdigital.co.uk" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Comet Digital Ltd.</a>, a company whose official website was also built by me.</p>
+        <!-- Tabs -->
+        <div class="flex gap-6 mb-8">
+            <button
+                data-tab="overview"
+                class="tab-btn relative pb-2 text-sm md:text-md font-medium text-white transition-colors duration-200"
+            >
+                Overview
+                <span class="tab-underline absolute left-0 -bottom-px h-[2px] w-full bg-white scale-x-100 origin-left transition-transform duration-200"></span>
+            </button>
+            <button
+                data-tab="experience"
+                class="tab-btn relative pb-2 text-sm md:text-md font-medium text-gray-500 hover:text-gray-300 transition-colors duration-200"
+            >
+                Experience
+                <span class="tab-underline absolute left-0 -bottom-px h-[2px] w-full bg-white scale-x-0 origin-left transition-transform duration-200"></span>
+            </button>
+        </div>
 
-        <p class="text-md mb-4">You can find out more about me on my website https://emjjkk.tech. That's also where you can find out how to contact me for collaboration or work enquiries.</p>
+        <!-- Overview Tab -->
+        <div id="tab-overview" class="tab-panel">
+            <p class="text-md mb-4">My name is Emmanuel Alabi, but you can call me Thursday.</p>
 
-        <p class="text-md mb-4">I happen to also be quite an insufferable gamer and play VALORANT and The Finals even despite being on the back foot with very high ping.</p>
+            <p class="text-md mb-4">Just your resident software dev. I'm a Thai-Nigerian and currently based in Rwanda while I persue my BSc in Computer Science. Very familiar with Javascript (NextJS, Astro) and Python (Flask, Django) for web development and the development of all other products which depend on a web server (e.g. Whatsapp bots, chrome extensions, mobile apps, etc).</p>
+
+            <p class="text-md mb-4" >I've built projects like <a href="https://myde.emjjkk.tech" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">MyDE</a> - a web IDE with LLM support; <a href="https://mydoc.emjjkk.tech" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">MyDoc</a> - a simple markdown-based editor; and wrote python scripts for <a href="https://github.com/emjjkk/beat-detection" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">audio beat detection</a>. I also independently built <a href="https://ngozis-kitchen.co.uk" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Ngozis Kitchen</a> in full, including its ordering system and admin dashboards, under the supervision of <a href="https://cometdigital.co.uk" class="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Comet Digital Ltd.</a>, a company whose official website was also built by me.</p>
+
+            <p class="text-md mb-4">You can find out more about me on my website https://emjjkk.tech. That's also where you can find out how to contact me for collaboration or work enquiries.</p>
+
+            <p class="text-md mb-4">I happen to also be quite an insufferable gamer and play VALORANT and The Finals even despite being on the back foot with very high ping.</p>
+        </div>
+
+        <!-- Experience Tab -->
+        <div id="tab-experience" class="tab-panel hidden">
+
+            <h3 class="text-xl mb-6 font-medium">Education</h3>
+
+            <div class="relative pl-8 mb-10">
+                <div class="absolute left-[6px] -translate-x-1/2 top-2 bottom-2 w-px bg-white/15"></div>
+
+                <div class="relative mb-8">
+                    <span class="absolute left-[-30px] top-1.5 w-2 h-2 rounded-full bg-white"></span>
+                    <h4 class="text-md font-medium">BSc Computer Science — University of the People</h4>
+                    <p class="text-sm text-gray-500 mb-2">June 2024 – Present</p>
+                    <p class="text-md">Completed relevant coursework, including Software Engineering, Operating Systems, Computer Architecture, Digital Electronics, as well as soft skill courses such as Professional Communication and Ethics and Social Responsibility.</p>
+                </div>
+
+                <div class="relative mb-8">
+                    <span class="absolute left-[-30px] top-1.5 w-2 h-2 rounded-full bg-white/40 border border-white/40"></span>
+                    <h4 class="text-md font-medium">MCIT Cybersecurity Certificate — IBM Skills Build</h4>
+                    <p class="text-sm text-gray-500 mb-2">January 2026</p>
+                    <p class="text-md">Learned advanced technical skills in cybersecurity, such as security posture evaluation, vulnerability assessment, network architecture, cloud infrastructure security, security operations, and incident reporting.</p>
+                </div>
+
+                <div class="relative">
+                    <span class="absolute left-[-30px] top-1.5 w-2 h-2 rounded-full bg-white/40 border border-white/40"></span>
+                    <h4 class="text-md font-medium">High School Diploma — Acellus Academy</h4>
+                    <p class="text-sm text-gray-500 mb-2">August 2019 – December 2023</p>
+                    <p class="text-md">High school education, took relevant coursework such as AP Computer Science and AP Statistics.</p>
+                </div>
+            </div>
+
+            <h3 class="text-xl mb-6 font-medium">Work / Volunteer Experience</h3>
+
+            <div class="relative pl-8">
+                <div class="absolute left-[6px] -translate-x-1/2 top-2 bottom-2 w-px bg-white/15"></div>
+
+                <div class="relative">
+                    <span class="absolute left-[-30px] top-1.5 w-2 h-2 rounded-full bg-white/40 border border-white/40"></span>
+                    <h4 class="text-md font-medium">Web Developer — Comet Digital Ltd, Rwanda</h4>
+                    <p class="text-sm text-gray-500 mb-2">January 2023 – June 2024</p>
+                    <p class="text-md">Developed the company's official website and assisted with the development of client websites and company projects.</p>
+                </div>
+            </div>
+
+        </div>
+
     </section>
-   
 
-    
-    
+    <script>
+        const buttons = document.querySelectorAll<HTMLButtonElement>(".tab-btn");
+        const panels = document.querySelectorAll<HTMLDivElement>(".tab-panel");
+
+        buttons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const target = btn.dataset.tab;
+
+                buttons.forEach((b) => {
+                    const underline = b.querySelector<HTMLSpanElement>(".tab-underline");
+                    b.classList.remove("text-white");
+                    b.classList.add("text-gray-500");
+                    underline?.classList.remove("scale-x-100");
+                    underline?.classList.add("scale-x-0");
+                });
+
+                btn.classList.add("text-white");
+                btn.classList.remove("text-gray-500");
+                const activeUnderline = btn.querySelector<HTMLSpanElement>(".tab-underline");
+                activeUnderline?.classList.add("scale-x-100");
+                activeUnderline?.classList.remove("scale-x-0");
+
+                panels.forEach((panel) => {
+                    panel.classList.toggle("hidden", panel.id !== `tab-${target}`);
+                });
+            });
+        });
+    </script>
+
 </Layout>
