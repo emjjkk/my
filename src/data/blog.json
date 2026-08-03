@@ -1,5 +1,14 @@
 [
     {
+        "slug": "building-a-lightweight-wallpaper-engine-for-win10-w-tauri",
+        "title": "Building a Lightweight Wallpaper Engine for Windows 10 (With Rust and Typescript)",
+        "image": "https://github.com/emjjkk/livewall/raw/main/image.png",
+        "excerpt": "I built a lightweight live wallpaper engine using Tauri 2, Rust, React, and TypeScript because I wanted something that wouldn't eat hundreds of megabytes of RAM just to animate my desktop.",
+        "date": "July 31, 2026",
+        "readTime": "18 min read",
+        "tags": ["Tauri", "React", "Wallpaper-engine", "live-wallpaper"]
+    },    
+    {
         "slug": "writing-a-lowkey-goated-python-script-for-beat-detection",
         "title": "Writing a Lowkey Goated Python Script To Automatically Detect Beats from Audio Files",
         "image": "https://cdn-images-1.medium.com/max/800/1*4_7GBMUIo6zHJD0SJ64A8w.png",
