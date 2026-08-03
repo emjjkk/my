@@ -22,10 +22,7 @@ const {
       (function () {
         try {
           var stored = localStorage.getItem("theme");
-          var prefersDark =
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches;
-          var theme = stored || (prefersDark ? "dark" : "light");
+          var theme = stored || "dark";
           document.documentElement.setAttribute("data-theme", theme);
           var bg = theme === "dark" ? "#000000" : "#f8fafc";
           document.documentElement.style.background = bg;
@@ -82,7 +79,8 @@ const {
       }
     </style>
   </head>
-  <body class="font-body min-h-screen">
+  <body id="SITE_BACKGROUND" class="font-body min-h-screen">
+    
     <!-- Loading Animation Component -->
     <LoadingAnimation />
     <div class="relative h-screen overflow-hidden max-w-[1366px] mx-auto">
@@ -118,6 +116,26 @@ const {
       </main>
     </div>
     <script>
+      const syncThemeToggle = () => {
+        const theme = document.documentElement.getAttribute("data-theme") || "dark";
+        const button = document.getElementById("theme-toggle");
+        const icon = document.getElementById("theme-toggle-icon");
+
+        if (button) {
+          button.setAttribute(
+            "aria-label",
+            theme === "dark" ? "Switch to light mode" : "Switch to dark mode",
+          );
+        }
+
+        if (icon) {
+          icon.className =
+            theme === "dark"
+              ? "fa-solid fa-sun text-sm"
+              : "fa-solid fa-moon text-sm"
+        }
+      };
+
       // Theme toggle (keep for manual switching)
       // @ts-ignore
       window["toggleTheme"] = function () {
@@ -132,8 +150,21 @@ const {
         var bg = next === "dark" ? "#000000" : "#f8fafc";
         document.documentElement.style.background = bg;
         document.body && (document.body.style.background = bg);
+        syncThemeToggle();
       };
+
+      const toggleButton = document.getElementById("theme-toggle");
+      if (toggleButton) {
+        toggleButton.addEventListener("click", window["toggleTheme"]);
+      }
+
+      syncThemeToggle();
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.globe.min.js" defer></script>
+    <script src="/scripts/vanta-wallpaper.js" defer></script>
+
     <script
       defer
       src="https://cloud.umami.is/script.js"

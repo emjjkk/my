@@ -15,7 +15,12 @@ body {
 
 /* Theme variables and helpers */
 :root {
-    color-scheme: light;
+    color-scheme: dark;
+    --bg: #000000;
+    --surface: rgba(0, 0, 0, .9);
+    --text: #d1d5db;
+    --muted: #9ca3af;
+    --border: rgba(255,255,255,0.06);
 }
 
 :root[data-theme='light'], html[data-theme='light'] {
@@ -28,7 +33,7 @@ body {
 
 :root[data-theme='dark'], html[data-theme='dark'] {
     --bg: #000000;
-    --surface: rgba(0,0,0,0.7);
+    --surface: rgba(0, 0, 0, .85);
     --text: #d1d5db;
     --muted: #9ca3af;
     --border: rgba(255,255,255,0.06);
@@ -44,9 +49,6 @@ body::before {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    background-image:
-        linear-gradient(135deg, transparent 0 49.2%, color-mix(in srgb, var(--text) 4%, transparent) 49.2% 50.2%, transparent 50.2% 100%),
-        repeating-linear-gradient(180deg, transparent 0 34px, color-mix(in srgb, var(--text) 4%, transparent) 34px 35px);
     opacity: 0.22;
     mix-blend-mode: multiply;
 }
