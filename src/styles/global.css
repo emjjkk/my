@@ -33,7 +33,7 @@ body {
 
 :root[data-theme='dark'], html[data-theme='dark'] {
     --bg: #000000;
-    --surface: rgba(0, 0, 0, .85);
+    --surface: rgba(0, 0, 0, .87);
     --text: #d1d5db;
     --muted: #9ca3af;
     --border: rgba(255,255,255,0.06);
